@@ -1,0 +1,192 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Routr.be</title>
+        <meta name="description" content="La liste coopérative des dérangements sur les grands axes routiers belges.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="img/icon.png" rel="icon" type="image/png" />
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Routr.be</a>
+                </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+
+                    <!-- Menu -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="liste.html">Liste</a></li>
+                        <li><a href="signaler.html">Signaler</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Aide et contact</a></li>
+                    </ul>
+
+                    <!-- Login -->
+                    <form action="#" method="post" class="navbar-form navbar-right">
+                            <div class="form-group">
+                            <input type="text" placeholder="Identifiant" class="form-control">
+                            </div>
+                            <div class="form-group">
+                            <input type="password" placeholder="Mot de passe" class="form-control">
+                            </div>
+                        <button type="submit" class="btn btn-warning">Connexion</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenu -->
+        <main class="container" role="main">
+            <section id="alert" class="col-md-12 alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                Le serveur est actuellement sous-maintenance. Des time-outs sont probables.
+            </section>
+
+            <section id="map" class="col-md-12">
+                <iframe
+                    width=100%
+                    height="350"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBLzIcv4cz1O2w_mJiyXG6zjKgj8fr_Vro&center=50.501079,4.47646&zoom=7&maptype=roadmap">
+                </iframe>
+            </section>
+
+            <section id="listRecent" class="font-helv col-md-7">
+                <h2><b>Derniers recensements</b></h2>
+                <table class="table table-hover text-center">
+                    <tr class="active">
+                        <td>Ajouté le</td>
+                        <td>Zone</td>
+                        <td>Vers</td>
+                        <td>Type</td>
+                        <td>Confiance</td>
+                        <td>Vote</td>
+                    </tr>
+                    <tr>
+                        <td><time>2011-01-28</time></td>
+                        <td>E411 Overijse</td>
+                        <td>Bruxelles</td>
+                        <td>Accident</td>
+                        <td>4</td>
+                        <td>
+                            <form action="#">
+                                <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></button>
+                                <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><time>2014-03-12</time></td>
+                        <td>E42 Machin</td>
+                        <td>Liège</td>
+                        <td>Travaux</td>
+                        <td>12</td>
+                        <td>
+                            <form action="#">
+                                <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></button>
+                                <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><time>2015-02-13</time></td>
+                        <td>Ring</td>
+                        <td>&mdash;</td>
+                        <td>Accident</td>
+                        <td>2</td>
+                        <td>
+                            <form action="#">
+                                <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></button>
+                                <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><time>2015-02-14</time></td>
+                        <td>N82 Jemeppe</td>
+                        <td>Luxembourg</td>
+                        <td>Travaux</td>
+                        <td>-2</td>
+                        <td>
+                            <form action="#">
+                                <button disabled type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></button>
+                                <button disabled type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><time>2014-12-28</time></td>
+                        <td>Delta</td>
+                        <td>&mdash;</td>
+                        <td>Accident</td>
+                        <td>6</td>
+                        <td>
+                            <form action="#">
+                                <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></button>
+                                <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="news" class="font-helv col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-title"><b>Dernières nouveautés</b></div>
+                    <div class="panel-body">
+                        <article>
+                            <h3>Intégration Google maps. <span class="label label-info">New</span></h3>
+                            <em class="madeBy">&ndash; par Admin le <time>2015-02-14</time></em>
+                            <p class="text-justify">Le site utilise désormais l'API de google maps pour afficher une carte.</p>
+                        </article>
+                        <article>
+                            <h3>Nouveau design !</h3>
+                            <em class="madeBy">&ndash; par Admin le <time>2015-02-13</time></em>
+                            <p class="text-justify">Le site bénéficie désormais d'un css. Ce qui le rend plus classe de 3000% !</p>
+                        </article>
+                        <article>
+                            <h3>Mise en prod</h3>
+                            <em class="madeBy">&ndash; par Admin le <time>2015-02-13</time></em>
+                            <p class="text-justify">Up de la première version.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="col-md-12">
+                <hr>
+                &copy; Groupe 14 &mdash; All rights reserved
+            </footer>
+        </main>
+
+        <!-- JavaScript -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>

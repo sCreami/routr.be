@@ -1,0 +1,114 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Routr.be</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <header>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Identification</legend>
+                    <input name="user" type="text" placeholder="Utilisateur">
+                    <input name="passwd" type="password" placeholder="Mot de passe">
+                    <button name="login">Connexion</button>
+                </fieldset>
+            </form>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Liste</a></li>
+                <li><a href="#">Signaler</a></li>
+                <li><a href="#">Aide</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="alert">
+                <h2>Alerte de maintenance / message d'admin / ...</h2>
+            </section>
+
+            <section id="map">
+                <h2>// Carte Google Maps ici //</h2>
+            </section>
+
+            <section id="listRecent">
+                <h2>5 derniers recensement</h2>
+                <table class="lst">
+                    <tr>
+                        <td>Ajouté le</td>
+                        <td>Zone</td>
+                        <td>Type</td>
+                        <td>Confiance</td>
+                        <td>Vote</td>
+                    </tr>
+                    <tr>
+                        <td><time>2011-01-28</time></td>
+                        <td>E411</td>
+                        <td>Accident</td>
+                        <td>4</td>
+                        <td>
+                            <form action="#" method="post">
+                                <button name="upvote">+</button>
+                                <button name="downvote">-</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><time>2014-03-12</time></td>
+                        <td>E42</td>
+                        <td>Travaux</td>
+                        <td>12</td>
+                        <td>
+                            <form action="#" method="post">
+                                <button name="upvote">+</button>
+                                <button name="downvote">-</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><time>2015-02-13</time></td>
+                        <td>Ring</td>
+                        <td>Accident</td>
+                        <td>2</td>
+                        <td>
+                            <form action="#" method="post">
+                                <button name="upvote">+</button>
+                                <button name="downvote">-</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+
+            <section id="news">
+                <h2>Dernières nouvelles</h2>
+                <article>
+                    <h3>Nouveau design !</h3>
+                    <em>&ndash; par Admin le <time>2015-02-13</time></em>
+                    <p>Le site bénéfici désormais d'un css.</p>
+                </article>
+                <article>
+                    <h3>Mise en prod</h3>
+                    <em>&ndash; par Admin le <time>2015-02-13</time></em>
+                    <p>Up de la première version.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <hr>
+            <span class="">&copy; Groupe 14 &mdash; All rights reserved</span>
+        </footer>
+    </body>
+</html>
