@@ -1,5 +1,5 @@
 body {
-	background: #FEFEFE url('../img/background.jpg') no-repeat center top;
+	background: #FEFEFE url('../img/background.jpg') no-repeat center top fixed;
 }
 
 main {
@@ -23,8 +23,16 @@ hr {
   margin-top: 20px;
 }
 
+#bonnePratique {
+  margin-top: 63px;
+}
+
 .panel-body {
   margin-top: -10px;
+}
+
+.panel-bonprat {
+  padding-right: 40px;
 }
 
 @font-face {
