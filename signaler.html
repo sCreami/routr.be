@@ -79,8 +79,42 @@
 
             <section id="signalement" class="font-helv col-md-offset-1 col-md-10">
                 <h2><b>Proposer un nouveau signalement</b></h2>
-                <p>Bla bla</p>
+                <p>Indiquez la zone du dérangement, la direction, le type ainsi que tout autre information complémentaire utile</p>
+				<div class="col-md-8">
+					<form role="form">
+						<div class="form-group">
+							<label for="zone">Zone</label>
+							<input type="text" class="form-control" id="zone" placeholder = "ex: E411">
+						</div>
+						<div class="form-group">
+							<label for="direction">Direction</label>
+							<input type="text" class="form-control" id="direction" placeholder = "ex: en direction de Bruxelles">
+						</div>
+						<div class="form-group">
+							<label for="type">Type</label>
+							<select class="form-control" id = "type">
+  								<option>Accident</option>
+  								<option>Travaux</option>
+							</select>
+						</div>
+						<div class="form-group" >
+							<label for="infobonus">Informations complémentaires</label></br>
+							<textarea rows="3" style="width:100%"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class = "col-md-4">
+					<div class="panel panel-default">
+		   				<div class="panel-heading panel-title">
+				        <b>Title</b>
+					    </div>
+						<div class="panel-body">
+							content
+						</div>
+					</div>
+				</div>
             </section>
+
 
             <footer class="col-md-12">
                 <hr>
