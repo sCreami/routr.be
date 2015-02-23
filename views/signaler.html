@@ -1,0 +1,75 @@
+<div id="alert" class="col-md-12 alert alert-warning">
+    <a class="close" data-dismiss="alert">&times;</a>
+    Le serveur est actuellement sous-maintenance. Des time-outs sont probables.
+</div>
+
+<div id="map" class="col-md-12">
+    <iframe
+        width=100%
+        height="350"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBLzIcv4cz1O2w_mJiyXG6zjKgj8fr_Vro&center=50.501079,4.47646&zoom=7&maptype=roadmap">
+    </iframe>
+</div>
+
+<section id="signalement" class="font-helv col-md-8">
+    <h2><b>Proposer un nouveau signalement</b></h2>
+    <div class="well well-sm text-justify col-md-12"><p>Vous pouvez utiliser le formulaire çi dessous pour soumettre des dérangements rencontrés personnellement. Veuillez indiquer la zone du dérangement, le type, la direction et ainsi que tout autre information complémentaire pouvent s'avérer utile</p></div>
+    <form role="form">
+        <div class="form-group col-md-6">
+            <label for="zone">Zone</label>
+            <input type="text" class="form-control" id="zone" placeholder="exemple : E411 Louvain-la-Neuve">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="region">Région</label>
+            <select class="form-control" id="region">
+                <option>Anvers</option>
+                <option>Bruxelles</option>
+                <option>Braban Flamand</option>
+                <option>Braban Wallon</option>
+                <option>Flandre-Occidentale</option>
+                <option>Flandre-Orientale</option>
+                <option>Hainaut</option>
+                <option>Liège</option>
+                <option>Limbourg</option>
+                <option>Luxembourg</option>
+                <option>Namur</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="direction">En direction</label>
+            <input type="text" class="form-control" id="direction" placeholder="exemple : En direction de Bruxelles">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="type">Type</label>
+            <select class="form-control" id="type">
+                <option>Accident</option>
+                <option>Flash</option>
+                <option>Ralentissement</option>
+                <option>Travaux</option>
+            </select>
+        </div>
+        <div class="form-group col-md-12" >
+            <label for="infobonus">Informations complémentaires</label></br>
+            <textarea class="form-control" rows="5" style="width:100%"></textarea>
+        </div>
+        <div class="form-group col-md-12">
+        <button type="button" class="btn btn-primary btn-lg btn-block">Soumettre</button>
+        </div>
+    </form>
+</section>
+
+<div id="bonnePratique" class="col-md-4">
+    <div class="panel panel-info">
+        <div class="panel-heading panel-title">
+        <b>Les bonnes pratiques de soumission</b>
+        </div>
+        <div class="panel-body panel-bonprat"><br>
+            <ol>
+              <li>Les zones doivent être au format :<br>&lt;Axe routier&gt; &lt;Ville la plus proche&gt;</li><br>
+              <li>La direction est très importante et ne peut pas être ignorée. Si le dérangement se trouve dans les deux sens, il suffit de signaler "Deux sens".</li><br>
+              <li>Les informations complémentaires peuvent contenir tout genre d'information écrite. Que ce soit pour signaler le nombre de bande fermée, la vitesse limitée sur le tronçon ou même l'odeur désagréable des travaux. Toute information est la bienvenu !</li>
+            </ol>
+        </div>
+    </div>
+</div>
