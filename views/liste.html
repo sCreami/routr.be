@@ -26,75 +26,19 @@
             </tr>
         </thead>
         <thbody>
-            <tr>
-                <td><time>2011-01-28</time></td>
-                <td>E411 Overijse</td>
-                <td>Bruxelles</td>
-                <td>Accident</td>
-                <td><span class="label label-info">4</span></td>
+            <tr ng-repeat="item in items | filter:type | filter:region | filter:filterAll">
+                <td><time>{{item.date}}</time></td>
+                <td>{{item.zone}}</td>
+                <td><span ng-show="item.vers === null">&mdash;</span>{{item.vers}}</td>
+                <td>{{item.type}}</td>
+                <td><span class="label" ng-class="{'label-info':item.indice>=0,'label-warning':item.indice<0}">{{item.indice}}</span></td>
                 <td>
                     <form action="#">
                         <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
                         <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
                     </form>
                 </td>
-                <td><a href="#">Plus d'info</a></td>
-            </tr>
-            <tr>
-                <td><time>2014-03-12</time></td>
-                <td>E42 Malmedy</td>
-                <td>Liège</td>
-                <td>Travaux</td>
-                <td><span class="label label-info">12</span></td>
-                <td>
-                    <form action="#">
-                        <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                    </form>
-                </td>
-                <td><a href="#">Plus d'info</a></td>
-            </tr>
-            <tr>
-                <td><time>2015-02-13</time></td>
-                <td>Ring</td>
-                <td>&mdash;</td>
-                <td>Accident</td>
-                <td><span class="label label-info">2</span></td>
-                <td>
-                    <form action="#">
-                        <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                    </form>
-                </td>
-                <td><a href="#">Plus d'info</a></td>
-            </tr>
-            <tr>
-                <td><time>2015-02-14</time></td>
-                <td>N82 Jemeppe</td>
-                <td>Luxembourg</td>
-                <td>Travaux</td>
-                <td><span class="label label-warning">-2</span></td>
-                <td>
-                    <form action="#">
-                        <button disabled type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button disabled type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                    </form>
-                </td>
-                <td><a href="#">Plus d'info</a></td>
-            </tr>
-            <tr>
-                <td><time>2014-12-28</time></td>
-                <td>Delta</td>
-                <td>&mdash;</td>
-                <td>Accident</td>
-                <td><span class="label label-info">6</span></td>
-                <td>
-                    <form action="#">
-                        <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                    </form>
-                </td>
-                <td><a href="#">Plus d'info</a></td>
+                <td><a href="#/">Plus d'info</a></td>
             </tr>
         </tbody>
     </table>
@@ -104,9 +48,9 @@
     <h2><b>Rechercher</b></h2>
     <form>
         <fieldset>
-            <input type="text" class="form-control" placeholder="Filtrer"><br>
+            <input ng-model="filterAll" type="text" class="form-control" placeholder="Filtrer"><br>
             <label>Type :</label>
-            <select class="form-control">
+            <select ng-model="type" class="form-control">
                 <option value="" disable selected></option>
                 <option>Accident</option>
                 <option>Flash</option>
@@ -114,7 +58,7 @@
                 <option>Travaux</option>
             </select><br>
             <label>Région :</label>
-            <select multiple class="form-control">
+            <select ng-model="region" multiple class="form-control">
                 <option>Anvers</option>
                 <option>Bruxelles</option>
                 <option>Braban Flamand</option>

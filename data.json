@@ -1,0 +1,42 @@
+[
+	{
+		"id" : 0,
+		"date" : "2011-01-28",
+		"zone" : "E411 Overijse",
+		"vers" : "Bruxelles",
+		"type" : "Accident",
+		"indice" : 4
+	},
+	{
+		"id" : 1,
+		"date" : "2014-03-12",
+		"zone" : "E42 Malmedy",
+		"vers" : "Liège",
+		"type" : "Travaux",
+		"indice" : 12
+	},
+	{
+		"id" : 2,
+		"date" : "2015-02-13",
+		"zone" : "Ring",
+		"vers" : null,
+		"type" : "Accident",
+		"indice" : 2
+	},
+	{
+		"id" : 3,
+		"date" : "2015-02-14",
+		"zone" : "N82 Jemeppe",
+		"vers" : "Luxembourg",
+		"type" : "Flash",
+		"indice" : -2
+	},
+	{
+		"id" : 4,
+		"date" : "2014-12-28",
+		"zone" : "Delta",
+		"vers" : null,
+		"type" : "Ralentissement",
+		"indice" : 6
+	}
+]
