@@ -76,7 +76,6 @@
         <script src="js/angular-route.min.js"></script>
 
         <script>
-
           var app = angular.module('routr', ['ngRoute']);
 
             app.controller('TabController', function(){
@@ -92,27 +91,33 @@
             });
 
             app.controller('DataController', function ($scope, $http){
-
               $http({method:'GET', url:'data.json'}).success(function(data){
                 $scope.items = data;
               });
-
-              this.isThrustful = function(){
-                return $scope.indice > 0;
-              };
             });
 
             app.config(function($routeProvider){
               $routeProvider
-                .when('/', {templateUrl: 'views/home.html', controller:'TabController', controller:'DataController'})
-                .when('/liste', {templateUrl: 'views/liste.html', controller:'TabController', controller:'DataController'})
-                .when('/signaler', {templateUrl: 'views/signaler.html', controller:'TabController'})
+                .when('/',{
+                  templateUrl:'views/home.html',
+                  controller:'TabController',
+                  controller:'DataController'
+                })
+                .when('/liste',{
+                  templateUrl:'views/liste.html',
+                  controller:'TabController',
+                  controller:'DataController'
+                })
+                .when('/signaler',{
+                  templateUrl:'views/signaler.html',
+                  controller:'TabController'
+                })
                 .otherwise({redirectTo : '/'});
             });
-
         </script>
 
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>

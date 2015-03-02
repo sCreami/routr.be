@@ -5,6 +5,7 @@
 		"zone" : "E411 Overijse",
 		"vers" : "Bruxelles",
 		"type" : "Accident",
+		"province" : "Namur",
 		"indice" : 4
 	},
 	{
@@ -13,6 +14,7 @@
 		"zone" : "E42 Malmedy",
 		"vers" : "Liège",
 		"type" : "Travaux",
+		"province" : "Liège",
 		"indice" : 12
 	},
 	{
@@ -21,6 +23,7 @@
 		"zone" : "Ring",
 		"vers" : null,
 		"type" : "Accident",
+		"province" : "Bruxelles",
 		"indice" : 2
 	},
 	{
@@ -29,6 +32,7 @@
 		"zone" : "N82 Jemeppe",
 		"vers" : "Luxembourg",
 		"type" : "Flash",
+		"province" : "Namur",
 		"indice" : -2
 	},
 	{
@@ -37,6 +41,7 @@
 		"zone" : "Delta",
 		"vers" : null,
 		"type" : "Ralentissement",
+		"province" : "Bruxelles",
 		"indice" : 6
 	}
 ]

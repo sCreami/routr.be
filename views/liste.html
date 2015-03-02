@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <thbody>
-            <tr ng-repeat="item in items | filter:type | filter:region | filter:filterAll">
+            <tr ng-repeat="item in items | filter:type | filter:province | filter:filterAll">
                 <td><time>{{item.date}}</time></td>
                 <td>{{item.zone}}</td>
                 <td><span ng-show="item.vers === null">&mdash;</span>{{item.vers}}</td>
@@ -57,8 +57,8 @@
                 <option>Ralentissement</option>
                 <option>Travaux</option>
             </select><br>
-            <label>Région :</label>
-            <select ng-model="region" multiple class="form-control">
+            <label>Province :</label>
+            <select ng-model="province" multiple size="11" class="form-control">
                 <option>Anvers</option>
                 <option>Bruxelles</option>
                 <option>Braban Flamand</option>
