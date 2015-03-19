@@ -1,2 +1,6 @@
 ## Mac OS X .DS_Store files
 .DS_Store
+
+## Node.js dev files
+npm-debug.log
+node_modules/*
