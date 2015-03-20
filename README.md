@@ -9,16 +9,15 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 
 ## Installation ##
 - S'assurer de posséder build-essential `sudo apt-get install -y build-essential`
-- Effectuer `npm install` avec les droits de sudo
+- Effectuer `sudo npm install` avec les droits pour résoudre les erreures
 
 ## Dépendance ##
-- body-parser: ~1.12.0
-- cookie-parser: ~1.3.4
-- debug: ~2.1.1
-- express: ~4.12.0
-- hjs: ~0.0.6
-- less-middleware: 1.0.x
-- morgan: ~1.5.1
-- serve-favicon: ~2.2.0
-- mongodb: ~2.0
-- assert: ~1.3.0
+- body-parser : ^1.12.0
+- consolidate : ^0.11.0
+- cookie-parser : ^1.3.4
+- express : ^4.12.2
+- hogan.js : ^3.0.2
+- method-override : ^2.3.1
+- mongodb : ^1.4.34
+- morgan : ^1.5.1
+- assert : *
