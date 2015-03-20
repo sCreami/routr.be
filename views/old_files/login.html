@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/login.css">
+  </head>
+  <body>
+    <hgroup>
+      <header>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            {{#username}}
+            <li><a href="/post/new">Add post</a></li>
+            <li><a href="/logout">Log out</a></li>
+            {{/username}}
+            {{^username}}
+            <li><a href="/signup">Signup</a></li>
+            {{/username}}
+          </ul>
+        </nav>
+      </header>
+      <h1>Login</h1>
+    </hgroup>
+    <form method="post">
+      <p>
+        <label>Username: </label>
+        <input type="text" name="username" value="{{username}}">
+        <br>
+        <label>Password: </label>
+        <input type="password" name="password" value="">
+        <br>
+        <input type="submit">
+      </p>
+      {{#error}}
+      <div class="error">
+        {{error}}
+      </div>
+      <br>
+      {{/error}}
+    </form>
+  </body>
+</html>
