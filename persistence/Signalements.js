@@ -1,21 +1,19 @@
 "use strict";
 
-module.exports = function Posts(db) {
+module.exports = function Signalements(db) {
 
-    var posts = db.collection("posts");
+    var signalements = db.collection("signalements");
 
     return {
-        addPost: function(title, content, tags, author, done) {
-            var permalink = title.replace( /\s/g, '_' );
-            permalink = permalink.replace( /\W/g, '' );
+        addPost: function(date_added, date_latest_upvote, zone, direction, type, vote, author) {
             var entry = {
-                title: title,
-                author: author,
-                content: content,
-                permalink: permalink,
-                tags: tags,
-                comments: [],
-                date: new Date()
+                date_added: new Date(),
+                date_latest_upvote: new Date(),
+                zone: zone,
+                direction: direction,
+                type, type,
+                vote, vote,
+                author: author, //put the current user here!
             };
             posts.insert(entry, function (error, result) {
                 if (error) return done(error, null);
