@@ -57,6 +57,10 @@ hr {
 	color: grey;
 }
 
+.helloing {
+  margin-left: 20px;
+}
+
 .navbar-custom {
   background-color: #2b699d;
   border-color: #245883;
@@ -186,10 +190,6 @@ hr {
       padding-top: 10px;
       padding-bottom: 10px;
   }
-  .navbar-text {
-      float: none;
-      margin: 15px 0;
-  } 
   /* since 3.1.0 */
   .navbar-collapse.collapse.in { 
       display: block!important;
@@ -198,6 +198,11 @@ hr {
       overflow: hidden!important;
   }
 }
+.navbar-text {
+  margin-top: 7px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+} 
 .navbar-custom .navbar-link {
   color: #ffffff;
 }
