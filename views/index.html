@@ -1,121 +1,116 @@
-        {{>header}}
+{{>header}}
+<div id="map" class="col-md-12">
+    <iframe
+        width=100%
+        height="350"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBLzIcv4cz1O2w_mJiyXG6zjKgj8fr_Vro&center=50.501079,4.47646&zoom=7&maptype=roadmap">
+    </iframe>
+</div>
 
-        <!-- Contenu -->
-        <main class="container" role="main">
+<section id="listRecent" class="font-helv col-md-7">
+    <h2><b>Derniers recensements</b></h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ajouté le</th>
+                <th>Zone</th>
+                <th>Vers</th>
+                <th>Type</th>
+                <th>Confiance</th>
+                <th>Vote</th>
+            </tr>
+        </thead>
+        <thbody>
+            <tr>
+                <td><time>2011-01-28</time></td>
+                <td>E411 Overijse</td>
+                <td>Bruxelles</td>
+                <td>Accident</td>
+                <td><span class="label label-info">4</span></td>
+                <td>
+                    <form action="#">
+                        <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><time>2014-03-12</time></td>
+                <td>E42 Malmedy</td>
+                <td>Liège</td>
+                <td>Travaux</td>
+                <td><span class="label label-info">12</span></td>
+                <td>
+                    <form action="#">
+                        <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><time>2015-02-13</time></td>
+                <td>Ring</td>
+                <td>&mdash;</td>
+                <td>Accident</td>
+                <td><span class="label label-info">2</span></td>
+                <td>
+                    <form action="#">
+                        <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><time>2015-02-14</time></td>
+                <td>N82 Jemeppe</td>
+                <td>Luxembourg</td>
+                <td>Travaux</td>
+                <td><span class="label label-warning">-2</span></td>
+                <td>
+                    <form action="#">
+                        <button disabled type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button disabled type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td><time>2014-12-28</time></td>
+                <td>Delta</td>
+                <td>&mdash;</td>
+                <td>Accident</td>
+                <td><span class="label label-info">6</span></td>
+                <td>
+                    <form action="#">
+                        <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
-            <div id="map" class="col-md-12">
-                <iframe
-                    width=100%
-                    height="350"
-                    frameborder="0" style="border:0"
-                    src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBLzIcv4cz1O2w_mJiyXG6zjKgj8fr_Vro&center=50.501079,4.47646&zoom=7&maptype=roadmap">
-                </iframe>
-            </div>
-
-            <section id="listRecent" class="font-helv col-md-7">
-                <h2><b>Derniers recensements</b></h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Ajouté le</th>
-                            <th>Zone</th>
-                            <th>Vers</th>
-                            <th>Type</th>
-                            <th>Confiance</th>
-                            <th>Vote</th>
-                        </tr>
-                    </thead>
-                    <thbody>
-                        <tr>
-                            <td><time>2011-01-28</time></td>
-                            <td>E411 Overijse</td>
-                            <td>Bruxelles</td>
-                            <td>Accident</td>
-                            <td><span class="label label-info">4</span></td>
-                            <td>
-                                <form action="#">
-                                    <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                                    <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><time>2014-03-12</time></td>
-                            <td>E42 Malmedy</td>
-                            <td>Liège</td>
-                            <td>Travaux</td>
-                            <td><span class="label label-info">12</span></td>
-                            <td>
-                                <form action="#">
-                                    <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                                    <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><time>2015-02-13</time></td>
-                            <td>Ring</td>
-                            <td>&mdash;</td>
-                            <td>Accident</td>
-                            <td><span class="label label-info">2</span></td>
-                            <td>
-                                <form action="#">
-                                    <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                                    <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><time>2015-02-14</time></td>
-                            <td>N82 Jemeppe</td>
-                            <td>Luxembourg</td>
-                            <td>Travaux</td>
-                            <td><span class="label label-warning">-2</span></td>
-                            <td>
-                                <form action="#">
-                                    <button disabled type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                                    <button disabled type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><time>2014-12-28</time></td>
-                            <td>Delta</td>
-                            <td>&mdash;</td>
-                            <td>Accident</td>
-                            <td><span class="label label-info">6</span></td>
-                            <td>
-                                <form action="#">
-                                    <button type="button" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                                    <button type="button" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section id="news" class="font-helv col-md-5">
-                <div class="panel panel-default">
-                    <div class="panel-heading panel-title"><b>Dernières nouveautés</b></div>
-                    <div class="panel-body">
-                        <article>
-                            <h3>Intégration Google maps. <span class="label label-info">New</span></h3>
-                            <em class="madeBy">&ndash; par Admin le <time>2015-02-14</time></em>
-                            <p class="text-justify">Le site utilise désormais l'API de google maps pour afficher une carte.</p>
-                        </article>
-                        <article>
-                            <h3>Nouveau design !</h3>
-                            <em class="madeBy">&ndash; par Admin le <time>2015-02-13</time></em>
-                            <p class="text-justify">Le site bénéficie désormais d'un css. Ce qui le rend plus classe de 3000% !</p>
-                        </article>
-                        <article>
-                            <h3>Mise en prod</h3>
-                            <em class="madeBy">&ndash; par Admin le <time>2015-02-13</time></em>
-                            <p class="text-justify">Up de la première version.</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-            
-        {{>footer}}
+<section id="news" class="font-helv col-md-5">
+    <div class="panel panel-default">
+        <div class="panel-heading panel-title"><b>Dernières nouveautés</b></div>
+        <div class="panel-body">
+            <article>
+                <h3>Intégration Google maps. <span class="label label-info">New</span></h3>
+                <em class="madeBy">&ndash; par Admin le <time>2015-02-14</time></em>
+                <p class="text-justify">Le site utilise désormais l'API de google maps pour afficher une carte.</p>
+            </article>
+            <article>
+                <h3>Nouveau design !</h3>
+                <em class="madeBy">&ndash; par Admin le <time>2015-02-13</time></em>
+                <p class="text-justify">Le site bénéficie désormais d'un css. Ce qui le rend plus classe de 3000% !</p>
+            </article>
+            <article>
+                <h3>Mise en prod</h3>
+                <em class="madeBy">&ndash; par Admin le <time>2015-02-13</time></em>
+                <p class="text-justify">Up de la première version.</p>
+            </article>
+        </div>
+    </div>
+</section>
+{{>footer}}

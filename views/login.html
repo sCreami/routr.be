@@ -1,24 +1,19 @@
-        {{>header}}
-        
-        <!-- Contenu -->
-        <main class="container" role="main">
+{{>header}}
+<hgroup>
+    <h1>Login</h1>
+</hgroup>
+<form method="post">
+<p>
+    <input type="text" name="username" placeholder="Username" value="{{username}}">
+    <br>
+    <input type="password" name="password" placeholder="Password" value="">
+    <br>
+    <input type="submit">
+</p>
 
-            <hgroup>
-                <h1>Login</h1>
-            </hgroup>
-            <form method="post">
-            <p>
-                <input type="text" name="username" placeholder="Username" value="{{username}}">
-                <br>
-                <input type="password" name="password" placeholder="Password" value="">
-                <br>
-                <input type="submit">
-            </p>
-
-            {{#error}}
-            <div class="error">{{error}}</div>
-            <br>
-            {{/error}}
-            </form>
-
-        {{>footer}}
+{{#error}}
+<div class="error">{{error}}</div>
+<br>
+{{/error}}
+</form>
+{{>footer}}
