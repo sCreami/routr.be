@@ -8,13 +8,22 @@ module.exports = function(app) {
 
   return {
     home: function(req, res, next) {
-		res.render('index')
+		  res.render('index', {
+        partials:{header:'header',footer:'footer'},
+        username: req.username
+      })
     },
     list: function(req, res, next) {
-    	res.render('list')
+    	res.render('list', {
+        partials:{header:'header',footer:'footer'},
+        username: req.username
+      })
     },
     signal: function(req, res, next) {
-    	res.render('signal')
+    	res.render('signal', {
+        partials:{header:'header',footer:'footer'},
+        username: req.username
+      })
     }
   }
 }

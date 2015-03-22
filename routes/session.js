@@ -23,7 +23,9 @@ module.exports = function(app) {
         },
         login: {
             input: function(req, res, next) {
-                res.render("login");
+                res.render("login", {
+                    partials:{header:'header',footer:'footer'}
+                });
             },
             perform: function(req, res, next) {
                 var username = req.body.username;
@@ -44,11 +46,15 @@ module.exports = function(app) {
                         var answer = { username: username, errors: {} };
                         if (error instanceof UnknownUserError) {
                             answer.errors.username = error;
-                            res.render("login", answer);
+                            res.render("login", answer + {
+                                partials:{header:'header',footer:'footer'},
+                            });
                         }
                         else if (error instanceof InvalidPasswordError) {
                             answer.errors.password = error;
-                            res.render("login", answer);
+                            res.render("login", answer + {
+                                partials:{header:'header',footer:'footer'},
+                            });
                         }
                         else {
                             next(error); // passer erreur au gestionnaire suivant
@@ -68,7 +74,9 @@ module.exports = function(app) {
         },
         signup: {
             input: function(req, res, next) {
-                res.render("signup");
+                res.render("signup", {
+                    partials:{header:'header',footer:'footer'}
+                });
             },
             validate: function(req, res, next) {
                 var username = req.body.username,
@@ -99,7 +107,9 @@ module.exports = function(app) {
                     next();
                 else
                     // Échec : retourner à la page d'enregistrement.
-                    res.render("signup", answer);
+                    res.render("signup", answer + {
+                        partials:{header:'header',footer:'footer'},
+                    });
             },
             perform: function(req, res, next) {
                 var username = req.body.username,
@@ -112,7 +122,9 @@ module.exports = function(app) {
                     if (error) {
                         if (error.code == '11000') {
                             errors.username = "Username already in use.";
-                            res.render("signup", answer);
+                            res.render("signup", answer + {
+                                partials:{header:'header',footer:'footer'},
+                            });
                         }
                         else
                             next(error); // faire appel au prochain gestionnaire
