@@ -8,7 +8,13 @@ module.exports = function(app) {
 
   return {
     home: function(req, res, next) {
-      res.render('index')
+		res.render('index')
+    },
+    list: function(req, res, next) {
+    	res.render('list')
+    },
+    signal: function(req, res, next) {
+    	res.render('signal')
     }
   }
 }

@@ -5,26 +5,36 @@ var express = require('express'),
 
 module.exports = exports = function(app) {
 
-  var handlers = {
-    session: require('./session')(app),
-    content: require('./content')(app),
-    error: require('./error')
-  };
+    var handlers = {
+        session: require('./session')(app),
+        content: require('./content')(app),
+        error: require('./error')
+    };
 
-  app.use(handlers.session.authentication.check);
+    app.use(handlers.session.authentication.check);
 
-  app.get('/', handlers.content.home);
+    // Index
+    app.get('/', handlers.content.home);
 
-  //app.get('/signup', handlers.session.signup.input);
-  app.post('/signup', handlers.session.signup.validate);
-  app.post('/signup', handlers.session.signup.perform);
+    // liste
+    app.get('/list', handlers.content.list);
 
-  //app.get('/login', handlers.session.login.input);
-  app.post('/login', handlers.session.login.perform);
+    // Signalement
+    app.get('/signal', handlers.content.signal);
 
-  app.get('/logout', handlers.session.logout.perform);
+    // Enregistrement
+    app.get('/signup', handlers.session.signup.input);
+    app.post('/signup', handlers.session.signup.validate);
+    app.post('/signup', handlers.session.signup.perform);
 
-  app.use(express.static(app.get("views")));
+    // Connexion
+    app.get('/login', handlers.session.login.input);
+    app.post('/login', handlers.session.login.perform);
 
-  app.use(handlers.error);
+    // Déconnexion
+    app.get('/logout', handlers.session.logout.perform);
+
+    app.use(express.static(app.get("views")));
+
+    app.use(handlers.error);
 };
