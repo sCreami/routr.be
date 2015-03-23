@@ -5,13 +5,14 @@ module.exports = function Signals(db) {
     var signals = db.collection("signals");
 
     return {
-        addSignals: function(date_added,  zone, direction, type, rating, username, done) {
+        addSignals: function(zone, direction, type, username, description, done) {
             var entry = {
-                date_added: new Date(),
+                date_added: new Date().getTime(),
                 zone: zone,
                 direction: direction,
                 type: type,
                 rating: 1,
+                description: description,
                 author: username //put the current user here!
             };
             signals.insert(entry, function (error, result) {
@@ -28,7 +29,7 @@ module.exports = function Signals(db) {
             });
         },
         getSignalsByZone: function(zone, count, done) {
-            signals.find({ zone : zone }).sort('date_added').limit(num).toArray(function(error, items) {
+            signals.find({ zone : zone }).sort('date_added').limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
                 console.log("Found " + items.length + " signals");
                 return done(error, items);
