@@ -2,7 +2,7 @@
 
 module.exports = function Signalements(db) {
 
-    var signalements = db.collection("signalements");
+    var signals = db.collection("signals");
 
     return {
         addPost: function(date_added, date_latest_upvote, zone, direction, type, vote, author) {

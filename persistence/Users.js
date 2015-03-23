@@ -32,6 +32,27 @@ module.exports = function Users(db) {
                     return done(new InvalidPasswordError(user), null);
                 return done(null, user); // réussi
             });
+        },
+        updateUser: function(username, password, email, done) {
+            var username = req.body.username;
+                password = req.body.password;
+                email = req.body.email;
+            if (!username)
+                errors.username = "You must have an username";
+            if(!password)
+                errors.password = "You must have a password";
+            if(!email)
+                errors.email = "You must have an email";
+            if(Object.keys(errors).length === 0)
+                next();
+            else {
+                users.update({'_id' : username },{'$push': {username: username, password: password, email: email}}, function(error, user) {
+                    if (error) return done(error, null);
+                    console.log("DB: updated user " + username);
+                    return done(null, user);
+                });
+            }
+            return done(errors, null);
         }
     };
 };

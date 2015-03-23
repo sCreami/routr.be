@@ -20,7 +20,8 @@ module.exports = exports = function(app) {
     app.get('/list', handlers.content.list);
 
     // Signalement
-    app.get('/signal', handlers.content.signal);
+    app.get('/signal', handlers.content.signal.form);
+    app.post('/signal', handlers.content.signal.save);
 
     // Enregistrement
     app.get('/signup', handlers.session.signup.input);
@@ -30,6 +31,10 @@ module.exports = exports = function(app) {
     // Connexion
     app.get('/login', handlers.session.login.input);
     app.post('/login', handlers.session.login.perform);
+
+    // Mon compte
+    app.get('/account', handlers.content.account.form)
+    app.post('/account', handlers.content.account.save)
 
     // Déconnexion
     app.get('/logout', handlers.session.logout.perform);
