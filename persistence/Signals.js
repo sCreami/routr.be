@@ -5,15 +5,15 @@ module.exports = function Signalements(db) {
     var signals = db.collection("signals");
 
     return {
-        addPost: function(date_added, date_latest_upvote, zone, direction, type, vote, author) {
+        addSignals: function(zone, direction, type, username, description, done) {
             var entry = {
-                date_added: new Date(),
-                date_latest_upvote: new Date(),
+                date_added: new Date().getTime(),
                 zone: zone,
                 direction: direction,
-                type, type,
-                vote, vote,
-                author: author, //put the current user here!
+                type: type,
+                rating: 1,
+                description: description,
+                author: username //put the current user here!
             };
             posts.insert(entry, function (error, result) {
                 if (error) return done(error, null);
@@ -28,8 +28,8 @@ module.exports = function Signalements(db) {
                 return done(error, items);
             });
         },
-        getPostsByTag: function(tag, count, done) {
-            posts.find({ tags : tag }).sort('date', -1).limit(num).toArray(function(error, items) {
+        getSignalsByZone: function(zone, count, done) {
+            signals.find({ zone : zone }).sort('date_added').limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
                 console.log("Found " + items.length + " posts");
                 return done(error, items);
