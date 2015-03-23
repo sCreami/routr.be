@@ -41,6 +41,9 @@ module.exports = exports = function(app) {
     // Déconnexion
     app.get('/logout', handlers.session.logout.perform);
 
+    // Contact
+    app.get('/contact', handlers.content.contact);
+
     app.use(express.static(app.get("views")));
 
     app.use(handlers.error);
