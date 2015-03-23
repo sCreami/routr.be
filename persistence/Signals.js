@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function Signalements(db) {
+module.exports = function Signals(db) {
 
     var signals = db.collection("signals");
 
@@ -15,39 +15,40 @@ module.exports = function Signalements(db) {
                 description: description,
                 author: username //put the current user here!
             };
-            posts.insert(entry, function (error, result) {
+            signals.insert(entry, function (error, result) {
                 if (error) return done(error, null);
-                console.log("DB: inserted post " + entry.title);
-                return done(error, permalink);
+                console.log("DB: inserted signals ");
+                return done(error, items);
             });
         },
-        getPosts: function(count, done) {
-            posts.find().sort('date', -1).limit(count).toArray(function(error, items) {
+        getSignals: function(count, done) {
+            signals.find().sort('date_added').limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
-                console.log("Found " + items.length + " posts");
+                console.log("Found " + items.length + " signals");
                 return done(error, items);
             });
         },
         getSignalsByZone: function(zone, count, done) {
             signals.find({ zone : zone }).sort('date_added').limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
-                console.log("Found " + items.length + " posts");
+                console.log("Found " + items.length + " signals");
                 return done(error, items);
             });
         },
-        getPostByPermalink: function(permalink, done) {
-            posts.findOne({'permalink': permalink}, function(error, post) {
+        incrementRating: function(_id, rating, done) {
+            signals.update({_id: _id}, { $inc: {rating: 1}, function(error, items) {
                 if (error) return done(error, null);
-                return done(error, post);
+                console.log("incremented" + items.length + " signals");
+                return done(error, items);
             });
         },
-        addComment: function(permalink, name, email, body, done) {
-            var comment = { author: name, body: body };
-            if (email) comment.email = email;
-            posts.update({permalink: permalink}, {'$push': {comments: comment}}, function(error, count) {
+        incrementRating: function(_id, rating, done) {
+            signals.update({_id: _id}, { $inc: {rating: -1}, function(error, items) {
                 if (error) return done(error, null);
-                return done(error, count);
+                console.log("decremented" + items.length + " signals");
+                return done(error, items);
             });
         }
+
     };
 };
