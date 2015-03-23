@@ -1,3 +1,5 @@
+![RTFM](http://i.imgur.com/YJtYaQO.png)
+
 # Routr.be
 La liste coopérative des dérangements sur les grands axes routiers belges.
 
