@@ -5,12 +5,12 @@ module.exports = function Signals(db) {
     var signals = db.collection("signals");
 
     return {
-        addSignals: function(zone, direction, type, username, description, done) {
+        addSignals: function(zone, direction, kind, username, description, done) {
             var entry = {
-                date_added: new Date().getTime(),
+                dateAdded: new Date().getTime(),
                 zone: zone,
                 direction: direction,
-                type: type,
+                kind: kind,
                 rating: 1,
                 description: description,
                 author: username //put the current user here!
@@ -22,28 +22,28 @@ module.exports = function Signals(db) {
             });
         },
         getSignals: function(count, done) {
-            signals.find().sort('date_added').limit(count).toArray(function(error, items) {
+            signals.find().sort('dateAdded',-1).limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
                 console.log("Found " + items.length + " signals");
                 return done(error, items);
             });
         },
         getSignalsByZone: function(zone, count, done) {
-            signals.find({ zone : zone }).sort('date_added').limit(count).toArray(function(error, items) {
+            signals.find({ zone : zone }).sort('dateAdded',-1).limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
                 console.log("Found " + items.length + " signals");
                 return done(error, items);
             });
         },
-        incrementRating: function(_id, rating, done) {
-            signals.update({_id: _id}, { $inc: {rating: 1}, function(error, items) {
+        incrementRating: function(id, rating, done) {
+            signals.update({_id: id}, { $inc: {rating: 1}}, function(error, items) {
                 if (error) return done(error, null);
                 console.log("incremented" + items.length + " signals");
                 return done(error, items);
             });
         },
-        incrementRating: function(_id, rating, done) {
-            signals.update({_id: _id}, { $inc: {rating: -1}, function(error, items) {
+        decrementRating: function(id, rating, done) {
+            signals.update({_id: id}, { $inc: {rating: -1}}, function(error, items) {
                 if (error) return done(error, null);
                 console.log("decremented" + items.length + " signals");
                 return done(error, items);
