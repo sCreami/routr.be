@@ -36,12 +36,11 @@ module.exports = function Users(db) {
         updateUser: function(username, password, email, done) {
             var username = req.body.username;
                 password = req.body.password;
+                verify = req.body.verify;
                 email = req.body.email;
                 usernameRE = /^[a-zA-Z0-9_-]{3,20}$/,
                 passwordRE = /^.{3,20}$/,
                 emailRE = /^[\S]+@[\S]+\.[\S]+$/,
-                answer = { username: username, email: email, errors: {} },
-                errors = answer.errors;
             if (!usernameRE.test(username))
                 errors.username = "Invalid username: must be alphanumeric and have between 3 and 20 characters";
             if (!passwordRE.test(password))
