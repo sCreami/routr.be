@@ -41,7 +41,7 @@ module.exports = function Users(db) {
                 usernameRE = /^[a-zA-Z0-9_-]{3,20}$/,
                 passwordRE = /^.{3,20}$/,
                 emailRE = /^[\S]+@[\S]+\.[\S]+$/;
-                
+
             if (!usernameRE.test(username))
                 errors.username = "Invalid username: must be alphanumeric and have between 3 and 20 characters";
             if (!passwordRE.test(password))
@@ -49,9 +49,8 @@ module.exports = function Users(db) {
             if (password != verify)
                 errors.verify = "Passwords must match";
             if (email != "") {
-                if (!emailRE.test(email)) {
+                if (!emailRE.test(email))
                     errors.email = "Invalid email address";
-                }
             }
             if(Object.keys(errors).length === 0)
                 next();

@@ -5,11 +5,10 @@ var Signals = require('../database/Signals')
 module.exports = function(app) {
 
     var db = app.get("db")
+    var listing = new Signals(db);
 
     return {
         home: function(req, res, next) {
-            var listing = new Signals(db);
-
             listing.getSignals(5, function(error, results) {
                 if(error) return next(error);
                 res.render('index', {
@@ -19,24 +18,30 @@ module.exports = function(app) {
                 })
             })
         },
-        list: function(req, res, next) {
-            var listing = new Signals(db);
-
-            listing.getSignals(20, function(error, results) {
-                if(error) return next(error);
-                res.render('list', {
-                    partials:{header:'header',footer:'footer'},
-                    username: req.username,
-                    signals: results
+        list: {
+            default: function(req, res, next) {
+                listing.getSignals(20, function(error, results) {
+                    if(error) return next(error);
+                    res.render('list', {
+                        partials:{header:'header',footer:'footer'},
+                        username: req.username,
+                        signals: results
+                    })
                 })
-            })
+            },
+            more: function(req, res, next) {
+                var id = req.params.id;
+                console.log(id);
+                
+                // TODO
+            }
         },
         signal: {
             form: function(req, res, next) {
                 res.render('signal', {
                     partials:{header:'header',footer:'footer'},
                     username: req.username
-                });
+                })
             },
             save: function(req, res, next) {
                 // TODO
@@ -47,7 +52,7 @@ module.exports = function(app) {
                 res.render('account', {
                     partials:{header:'header',footer:'footer'},
                     username: req.username
-                });
+                })
             },
             save: function(req, res, next) {
                 // TODO
@@ -57,7 +62,7 @@ module.exports = function(app) {
             res.render('contact', {
                 partials:{header:'header',footer:'footer'},
                 username: req.username
-            });
+            })
         }
     }
 }

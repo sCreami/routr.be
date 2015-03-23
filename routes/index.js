@@ -17,7 +17,8 @@ module.exports = exports = function(app) {
     app.get('/', handlers.content.home);
 
     // liste
-    app.get('/list', handlers.content.list);
+    app.get('/list', handlers.content.list.default);
+    app.get('/list/:id', handlers.content.list.more);
 
     // Signalement
     app.get('/signal', handlers.content.signal.form);
