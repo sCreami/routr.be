@@ -1,6 +1,5 @@
 "use strict";
 
-//var Posts = require('../persistence/Posts')
 var Signals = require('../persistence/Signals')
 
 module.exports = function(app) {
@@ -9,16 +8,22 @@ module.exports = function(app) {
 
     return {
         home: function(req, res, next) {
-            res.render('index', {
-                partials:{header:'header',footer:'footer'},
-                username: req.username
-            });
+            var listing = new Signals(db);
+
+            listing.getSignals(5, function(error, results) {
+                if(error) return next(error);
+                res.render('index', {
+                    partials:{header:'header',footer:'footer'},
+                    username: req.username,
+                    signals: results
+                })
+            })
         },
         list: function(req, res, next) {
             var listing = new Signals(db);
 
             listing.getSignals(20, function(error, results) {
-            if(error) return next(error);
+                if(error) return next(error);
                 res.render('list', {
                     partials:{header:'header',footer:'footer'},
                     username: req.username,
@@ -47,6 +52,12 @@ module.exports = function(app) {
             save: function(req, res, next) {
                 // TODO
             }
+        },
+        contact: function(req, res, next) {
+            res.render('contact', {
+                partials:{header:'header',footer:'footer'},
+                username: req.username
+            });
         }
     }
 }

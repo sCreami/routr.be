@@ -37,12 +37,22 @@ module.exports = function Users(db) {
             var username = req.body.username;
                 password = req.body.password;
                 email = req.body.email;
-            if (!username)
-                errors.username = "You must have an username";
-            if(!password)
-                errors.password = "You must have a password";
-            if(!email)
-                errors.email = "You must have an email";
+                usernameRE = /^[a-zA-Z0-9_-]{3,20}$/,
+                passwordRE = /^.{3,20}$/,
+                emailRE = /^[\S]+@[\S]+\.[\S]+$/,
+                answer = { username: username, email: email, errors: {} },
+                errors = answer.errors;
+            if (!usernameRE.test(username))
+                errors.username = "Invalid username: must be alphanumeric and have between 3 and 20 characters";
+            if (!passwordRE.test(password))
+                errors.password = "Invalid password: must have at least 3 and at most 20 caracters";
+            if (password != verify)
+                errors.verify = "Passwords must match";
+            if (email != "") {
+                if (!emailRE.test(email)) {
+                    errors.email = "Invalid email address";
+                }
+            }
             if(Object.keys(errors).length === 0)
                 next();
             else {
