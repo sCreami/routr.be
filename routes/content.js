@@ -1,6 +1,6 @@
 "use strict";
 
-var Signals = require('../persistence/Signals')
+var Signals = require('../database/Signals')
 
 module.exports = function(app) {
 

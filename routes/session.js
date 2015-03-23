@@ -1,9 +1,9 @@
 "use strict";
 
-var Users = require('../persistence/Users'),
-    Sessions = require('../persistence/Sessions'),
-    InvalidPasswordError = require('../persistence/errors/InvalidPassword'),
-    UnknownUserError = require('../persistence/errors/UnknownUser');
+var Users = require('../database/Users'),
+    Sessions = require('../database/Sessions'),
+    InvalidPasswordError = require('../database/errors/InvalidPassword'),
+    UnknownUserError = require('../database/errors/UnknownUser');
 
 module.exports = function(app) {
 
