@@ -34,33 +34,11 @@ module.exports = function Users(db) {
             });
         },
         updateUser: function(username, password, email, done) {
-            var username = req.body.username,
-                password = req.body.password,
-                verify = req.body.verify,
-                email = req.body.email,
-                usernameRE = /^[a-zA-Z0-9_-]{3,20}$/,
-                passwordRE = /^.{3,20}$/,
-                emailRE = /^[\S]+@[\S]+\.[\S]+$/;
-
-            if (!usernameRE.test(username))
-                errors.username = "Invalid username: must be alphanumeric and have between 3 and 20 characters";
-            if (!passwordRE.test(password))
-                errors.password = "Invalid password: must have at least 3 and at most 20 caracters";
-            if (password != verify)
-                errors.verify = "Passwords must match";
-            if (email != "") {
-                if (!emailRE.test(email))
-                    errors.email = "Invalid email address";
-            }
-            if(Object.keys(errors).length === 0)
-                next();
-            else {
-                users.update({'_id' : username },{'$push': {username: username, password: password, email: email}}, function(error, user) {
+            users.update({'_id' : username },{'$push': {username: username, password: password, email: email}}, function(error, user) {
                     if (error) return done(error, null);
                     console.log("DB: updated user " + username);
                     return done(null, user);
-                });
-            }
+            });
             return done(errors, null);
         }
     };

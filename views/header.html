@@ -40,15 +40,15 @@
 
                     <!-- Menu -->
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="list">Liste</a></li>
-                        <li><a href="signal">Signaler</a></li>
+                        <li {{#isList}}class="active"{{/isList}}><a href="list">Liste</a></li>
+                        <li {{#isSignal}}class="active"{{/isSignal}}><a href="signal">Signaler</a></li>
                         {{#username}}
-                        <li><a href="account">Mon Compte</a></li>
+                        <li {{#isAccount}}class="active"{{/isAccount}}><a href="account">Mon Compte</a></li>
                         {{/username}}
                         {{^username}}
-                        <li><a href="signup">Signup</a></li>
+                        <li {{#isSignup}}class="active"{{/isSignup}}><a href="signup">Signup</a></li>
                         {{/username}}
-                        <li><a href="contact">Aide et contact</a></li>
+                        <li {{#isContact}}class="active"{{/isContact}}><a href="contact">Aide et contact</a></li>
                     </ul>
 
                     {{#username}}

@@ -34,8 +34,9 @@ module.exports = exports = function(app) {
     app.post('/login', handlers.session.login.perform);
 
     // Mon compte
-    app.get('/account', handlers.content.account.form)
-    app.post('/account', handlers.content.account.save)
+    app.get('/account', handlers.content.account.form);
+    app.post('/account', handlers.content.account.validate);
+    app.post('/account', handlers.content.account.save);
 
     // Déconnexion
     app.get('/logout', handlers.session.logout.perform);

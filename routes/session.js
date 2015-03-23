@@ -75,7 +75,8 @@ module.exports = function(app) {
         signup: {
             input: function(req, res, next) {
                 res.render("signup", {
-                    partials:{header:'header',footer:'footer'}
+                    partials:{header:'header',footer:'footer'},
+                    isSignup: true
                 });
             },
             validate: function(req, res, next) {
@@ -109,6 +110,7 @@ module.exports = function(app) {
                     // Échec : retourner à la page d'enregistrement.
                     res.render("signup", answer + {
                         partials:{header:'header',footer:'footer'},
+                        isSignup: true
                     });
             },
             perform: function(req, res, next) {
@@ -124,6 +126,7 @@ module.exports = function(app) {
                             errors.username = "Username already in use.";
                             res.render("signup", answer + {
                                 partials:{header:'header',footer:'footer'},
+                                isSignup: true
                             });
                         }
                         else
