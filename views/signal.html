@@ -10,6 +10,12 @@
 
 <section id="signalement" class="font-helv col-md-8">
     <h2><b>Proposer un nouveau signalement</b></h2>
+    {{^username}}
+    <div id="alert" class="col-md-12 alert alert-warning">
+        <a class="close" data-dismiss="alert">&times;</a>
+        Vous n'êtes pas connecté, le signalemente sera donc enregistré comme anonyme.
+    </div>
+    {{/username}}
     <div class="well well-sm text-justify col-md-12"><p>Vous pouvez utiliser le formulaire çi dessous pour soumettre des dérangements rencontrés personnellement. Veuillez indiquer la zone du dérangement, le type, la direction et ainsi que tout autre information complémentaire pouvent s'avérer utile</p></div>
     <form role="form">
         <div class="form-group col-md-6">

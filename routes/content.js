@@ -35,8 +35,7 @@ module.exports = function(app) {
                 assert(typeof id === undefined); // test si id existe
                 var id = req.params.id;
                 console.log(id);
-
-                // TODO
+                //TODO
             }
         },
         signal: {
