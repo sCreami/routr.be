@@ -6,11 +6,11 @@
         <title>Routr.be</title>
         <meta name="description" content="La liste coopérative des dérangements sur les grands axes routiers belges.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="img/icon.png" rel="icon" type="image/png" />
-        <link href="css/normalize.css" rel="stylesheet">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="css/main.css" rel="stylesheet">
+        <link href="/img/icon.png" rel="icon" type="image/png" />
+        <link href="/css/normalize.css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,23 +40,23 @@
 
                     <!-- Menu -->
                     <ul class="nav navbar-nav">
-                        <li {{#isList}}class="active"{{/isList}}><a href="list">Liste</a></li>
-                        <li {{#isSignal}}class="active"{{/isSignal}}><a href="signal">Signaler</a></li>
+                        <li {{#isList}}class="active"{{/isList}}><a href="/list">Liste</a></li>
+                        <li {{#isSignal}}class="active"{{/isSignal}}><a href="/signal">Signaler</a></li>
                         {{#username}}
-                        <li {{#isAccount}}class="active"{{/isAccount}}><a href="account">Mon Compte</a></li>
+                        <li {{#isAccount}}class="active"{{/isAccount}}><a href="/account">Mon Compte</a></li>
                         {{/username}}
                         {{^username}}
-                        <li {{#isSignup}}class="active"{{/isSignup}}><a href="signup">Signup</a></li>
+                        <li {{#isSignup}}class="active"{{/isSignup}}><a href="/signup">Signup</a></li>
                         {{/username}}
-                        <li {{#isContact}}class="active"{{/isContact}}><a href="contact">Contact</a></li>
+                        <li {{#isContact}}class="active"{{/isContact}}><a href="/contact">Contact</a></li>
                     </ul>
 
                     {{#username}}
-                    <p class="nav navbar-text navbar-right">Hello {{username}}<a href="logout"><button class=" helloing btn btn-warning">Logout</button></a></p>
+                    <p class="nav navbar-text navbar-right">Hello {{username}}<a href="/logout"><button class=" helloing btn btn-warning">Logout</button></a></p>
                     {{/username}}
                     {{^username}}
                     <!-- Login -->
-                    <form action="login" method="post" class="navbar-form navbar-right">
+                    <form action="/login" method="post" class="navbar-form navbar-right">
                         <div class="form-group">
                         <input type="text" name="username" placeholder="Identifiant" class="form-control">
                         </div>

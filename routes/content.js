@@ -40,10 +40,14 @@ module.exports = function(app) {
                 })
             },
             more: function(req, res, next) {
-                assert(typeof id === undefined); // test si id existe
                 var id = req.params.id;
                 console.log(id);
-                //TODO
+
+                res.render('more', {
+                    partials:{header:'header',footer:'footer'},
+                    username: req.username,
+                    isList : true
+                })
             }
         },
         signal: {

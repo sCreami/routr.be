@@ -41,6 +41,13 @@ module.exports = function Signals(db) {
                 return done(error, items);
             });
         },
+        getSignalById: function(id, done) {
+            signals.findOne({'_id': id}, function(error, post) {
+                if (error) return done(error, null);
+                console.log("Show more of "+ id);
+                return done(error, post);
+            });
+        },
         getSignalsByZone: function(zone, count, done) {
             signals.find({ zone : zone }).sort('dateAdded',-1).limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
