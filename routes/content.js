@@ -40,13 +40,18 @@ module.exports = function(app) {
                 })
             },
             more: function(req, res, next) {
-                var id = req.params.id;
-                console.log(id);
+                var id = parseFloat(req.params.id);
 
-                res.render('more', {
-                    partials:{header:'header',footer:'footer'},
-                    username: req.username,
-                    isList : true
+                listing.getSignalById(id, function(error, result) {
+                    if(error) return next(error);
+                    if (!result) res.status(400).send("Not found");
+                    res.render('more', {
+                        partials:{header:'header',footer:'footer'},
+                        username: req.username,
+                        id : id,
+                        signal : result, 
+                        isList : true
+                    })
                 })
             }
         },

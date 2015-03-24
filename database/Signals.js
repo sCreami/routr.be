@@ -26,7 +26,7 @@ module.exports = function Signals(db) {
                 "kind": kind,
                 "rating": 1,
                 "description": description,
-                "author": username //put the current user here!
+                "author": username
             };
             signals.insert(entry, function (error, result) {
                 if (error) return done(error, null);
@@ -42,19 +42,19 @@ module.exports = function Signals(db) {
             });
         },
         getSignalById: function(id, done) {
-            signals.findOne({'_id': id}, function(error, post) {
+            signals.findOne({'_id': id}, function(error, item) {
                 if (error) return done(error, null);
-                console.log("Show more of "+ id);
-                return done(error, post);
+                console.log("Showing more of "+ id);
+                return done(error, item);
             });
         },
-        getSignalsByZone: function(zone, count, done) {
-            signals.find({ zone : zone }).sort('dateAdded',-1).limit(count).toArray(function(error, items) {
-                if (error) return done(error, null);
-                console.log("Found " + items.length + " signals");
-                return done(error, items);
-            });
-        },
+        // getSignalsByZone: function(zone, count, done) {
+        //     signals.find({ zone : zone }).sort('dateAdded',-1).limit(count).toArray(function(error, items) {
+        //         if (error) return done(error, null);
+        //         console.log("Found " + items.length + " signals");
+        //         return done(error, items);
+        //     });
+        // },
         incrementRating: function(id, rating, done) {
             signals.update({_id: id}, { $inc: {rating: 1}}, function(error, items) {
                 if (error) return done(error, null);
