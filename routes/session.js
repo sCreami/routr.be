@@ -106,12 +106,13 @@ module.exports = function(app) {
                 if(Object.keys(errors).length === 0)
                     // Validé : passer la requête au gestionnaire suivant.
                     next();
-                else
+                else {
                     // Échec : retourner à la page d'enregistrement.
-                    res.render("signup", answer + {
-                        partials:{header:'header',footer:'footer'},
-                        isSignup: true
-                    });
+                    answer.partials = {header:'header',footer:'footer'};
+                    answer.isSignup = true;
+                    answer.username = "";
+                    res.render("signup", answer);
+                }
             },
             perform: function(req, res, next) {
                 var username = req.body.username,

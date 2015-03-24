@@ -5,22 +5,27 @@
         <br>
         <div class="panel-body">
             <form method="post">
+                {{#errors}}
+                <div class="alert alert-danger" role="alert">
+                {{#errors.username}}<label class="error">{{errors.username}}</label>{{/errors.username}}
+                {{#errors.password}}<label class="error">{{errors.password}}</label>{{/errors.password}}
+                {{#errors.verify}}<label class="error">{{errors.verify}}</label>{{/errors.verify}}
+                {{#errors.email}}<label class="error">{{errors.email}}</label>{{/errors.email}}
+                </div>
+                {{/errors}}
+
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Username" name="username" value="{{username}}">
-                    {{#errors.username}}<label class="error">{{errors.username}}</label>{{/errors.username}}
                 </div>
                 <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" name="password" value="">
-                {{#errors.password}}<label class="error">{{errors.password}}</label>{{/errors.password}}
+                    <input type="password" class="form-control" placeholder="Password" name="password" value="">
                 </div>
                 <div class="form-group">
-                <input type="password" class="form-control" placeholder="Verify password" name="verify" value="">
-                {{#errors.verify}}<label class="error">{{errors.verify}}</label>{{/errors.verify}}
+                    <input type="password" class="form-control" placeholder="Verify password" name="verify" value="">
                 </div>
                 <div class="form-group input-group">
                 <span class="input-group-addon">@</span>
-                <input type="text" class="form-control" placeholder="Email (optional)" name="email" value="{{email}}">
-                {{#errors.email}}<label class="error">{{errors.email}}</label>{{/errors.email}}
+                    <input type="text" class="form-control" placeholder="Email (optional)" name="email" value="{{email}}">
                 </div>
                 <input type="submit" class="btn btn-default" value="Valider">
             </form>
