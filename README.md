@@ -1,3 +1,5 @@
+![dependancies](https://david-dm.org/sCreami/routr.be.svg)
+
 # Routr.be
 La liste coopérative des dérangements sur les grands axes routiers belges.
 
@@ -14,6 +16,8 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 - Utiliser les classes de bootstrap de mise en forme pour ne pas casser l'aspect _responsive_.
 
 ## Installation ##
+> Testé sous Debian GNU/Linux 7 Wheezy
+> 
 - S'assurer de posséder build-essential `sudo apt-get install -y build-essential`
 - Effectuer `sudo npm install` avec les droits pour résoudre les erreures
 - Lancer la webapp grâce à `node app`
@@ -27,4 +31,3 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 - method-override : ^2.3.1
 - mongodb : ^1.4.34
 - morgan : ^1.5.1
-- assert : *
