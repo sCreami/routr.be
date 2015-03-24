@@ -1,26 +1,30 @@
 {{>header}}
-<hgroup>
-    <header>
-    <h1>Signup</h1>
-    </header>
-</hgroup>
-<form method="post">
-    <label>Username: </label>
-    <input type="text" name="username" value="{{username}}">
-    {{#errors.username}}<label class="error">{{errors.username}}</label>{{/errors.username}}
-    <br>
-    <label>Password: </label>
-    <input type="password" name="password" value="">
-    {{#errors.password}}<label class="error">{{errors.password}}</label>{{/errors.password}}
-    <br>
-    <label>Verify Password: </label>
-    <input type="password" name="verify" value="">
-    {{#errors.verify}}<label class="error">{{errors.verify}}</label>{{/errors.verify}}
-    <br>
-    <label>Email (optional): </label>
-    <input type="text" name="email" value="{{email}}">
-    {{#errors.email}}<label class="error">{{errors.email}}</label>{{/errors.email}}
-    <br>
-    <input type="submit">
-</form>
+<div class="col-md-4 col-md-offset-4">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">Enregistrement</h3></div>
+        <br>
+        <div class="panel-body">
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" name="username" value="{{username}}">
+                    {{#errors.username}}<label class="error">{{errors.username}}</label>{{/errors.username}}
+                </div>
+                <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name="password" value="">
+                {{#errors.password}}<label class="error">{{errors.password}}</label>{{/errors.password}}
+                </div>
+                <div class="form-group">
+                <input type="password" class="form-control" placeholder="Verify password" name="verify" value="">
+                {{#errors.verify}}<label class="error">{{errors.verify}}</label>{{/errors.verify}}
+                </div>
+                <div class="form-group input-group">
+                <span class="input-group-addon">@</span>
+                <input type="text" class="form-control" placeholder="Email (optional)" name="email" value="{{email}}">
+                {{#errors.email}}<label class="error">{{errors.email}}</label>{{/errors.email}}
+                </div>
+                <input type="submit" class="btn btn-default" value="Valider">
+            </form>
+        </div>
+    </div>
+</div>
 {{>footer}}
