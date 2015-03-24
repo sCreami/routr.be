@@ -1,11 +1,7 @@
 {{>header}}
-<div id="map" class="col-md-12">
-    <iframe
-        width=100%
-        height="350"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBLzIcv4cz1O2w_mJiyXG6zjKgj8fr_Vro&center=50.501079,4.47646&zoom=7&maptype=roadmap">
-    </iframe>
+
+
+<div id="map-canvas" class="col-md-12">   
 </div>
 
 <section id="listRecent" class="font-helv col-md-7">
@@ -21,7 +17,7 @@
                 <th>Vote</th>
             </tr>
         </thead>
-        <thbody>
+        <tbody>
             {{#signals}}
             <tr>
                 <td><time>{{dateAdded}}</time></td>
