@@ -142,6 +142,45 @@ module.exports = function(app) {
                     }
                 });
             }
+        },
+        account : { //TOFIX
+            validate: function(req, res, next) {
+                var password = req.body.password,
+                    verify = req.body.verify,
+                    email = req.body.email,
+                    passwordRE = /^.{3,20}$/,
+                    emailRE = /^[\S]+@[\S]+\.[\S]+$/,
+                    errors = {};
+
+                if (!passwordRE.test(password))
+                    errors.password = "Invalid password: must have at least 3 and at most 20 caracters";
+                if (password != verify)
+                    errors.verify = "Passwords must match";
+                if (email != "")
+                    if (!emailRE.test(email))
+                        errors.email = "Invalid email address";
+
+                if(Object.keys(errors).length === 0)
+                    next();
+                else {
+                    res.render('account', {
+                        partials:{header:'header',footer:'footer'},
+                        username: req.username,
+                        isAccount: true,
+                        errors: errors
+                    })
+                }
+            },
+            save: function(req, res, next) {
+                var password = req.body.password,
+                    email = req.body.email,
+                    username = req.username;
+
+                users.updateUser(username, password, email, function(error, result) {
+                    if(error) return next(error);
+                    res.redirect('/account');
+                });
+            }
         }
     };
 };

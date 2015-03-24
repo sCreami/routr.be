@@ -46,13 +46,13 @@
                         <li {{#isAccount}}class="active"{{/isAccount}}><a href="/account">Mon Compte</a></li>
                         {{/username}}
                         {{^username}}
-                        <li {{#isSignup}}class="active"{{/isSignup}}><a href="/signup">Signup</a></li>
+                        <li {{#isSignup}}class="active"{{/isSignup}}><a href="/signup">S'enregistrer</a></li>
                         {{/username}}
                         <li {{#isContact}}class="active"{{/isContact}}><a href="/contact">Contact</a></li>
                     </ul>
 
                     {{#username}}
-                    <p class="nav navbar-text navbar-right">Hello {{username}}<a href="/logout"><button class=" helloing btn btn-warning">Logout</button></a></p>
+                    <p class="nav navbar-text navbar-right">Bonjour {{username}}<a href="/logout"><button class=" helloing btn btn-warning">Logout</button></a></p>
                     {{/username}}
                     {{^username}}
                     <!-- Login -->

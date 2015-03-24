@@ -115,40 +115,6 @@ module.exports = function(app) {
                     username: req.username,
                     isAccount: true
                 })
-            },
-            validate: function(req, res, next) {
-                var username = req.body.username,
-                    password = req.body.password,
-                    verify = req.body.verify,
-                    email = req.body.email,
-                    usernameRE = /^[a-zA-Z0-9_-]{3,20}$/,
-                    passwordRE = /^.{3,20}$/,
-                    emailRE = /^[\S]+@[\S]+\.[\S]+$/,
-                    errors = {};
-
-                if (!usernameRE.test(username))
-                    errors.username = "Invalid username: must be alphanumeric and have between 3 and 20 characters";
-                if (!passwordRE.test(password))
-                    errors.password = "Invalid password: must have at least 3 and at most 20 caracters";
-                if (password != verify)
-                    errors.verify = "Passwords must match";
-                if (email != "")
-                    if (!emailRE.test(email))
-                        errors.email = "Invalid email address";
-
-                if(Object.keys(errors).length === 0)
-                    next();    
-                else {
-                    res.render('account', {
-                        partials:{header:'header',footer:'footer'},
-                        username: req.username,
-                        isAccount: true,
-                        errors: errors
-                    })
-                }
-            },
-            save: function(req, res, next) {
-                // TODO
             }
         },
         contact: function(req, res, next) {
