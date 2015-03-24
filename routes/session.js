@@ -44,17 +44,16 @@ module.exports = function(app) {
                     }
                     else {
                         var answer = { username: username, errors: {} };
+                            answer.partials = {header:'header',footer:'footer'};
+                            answer.username = "";
+
                         if (error instanceof UnknownUserError) {
                             answer.errors.username = error;
-                            res.render("login", answer + {
-                                partials:{header:'header',footer:'footer'},
-                            });
+                            res.render("login", answer);
                         }
                         else if (error instanceof InvalidPasswordError) {
                             answer.errors.password = error;
-                            res.render("login", answer + {
-                                partials:{header:'header',footer:'footer'},
-                            });
+                            res.render("login", answer);
                         }
                         else {
                             next(error); // passer erreur au gestionnaire suivant
@@ -125,10 +124,10 @@ module.exports = function(app) {
                     if (error) {
                         if (error.code == '11000') {
                             errors.username = "Username already in use.";
-                            res.render("signup", answer + {
-                                partials:{header:'header',footer:'footer'},
-                                isSignup: true
-                            });
+                            answer.partials = {header:'header',footer:'footer'};
+                            answer.isSignup = true;
+                            answer.username = "";
+                            res.render("signup", answer);
                         }
                         else
                             next(error); // faire appel au prochain gestionnaire

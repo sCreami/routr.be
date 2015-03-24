@@ -5,20 +5,33 @@ module.exports = function Signals(db) {
     var signals = db.collection("signals");
 
     return {
-        addSignals: function(zone, direction, kind, username, description, done) {
+        addSignal: function(zone, direction, kind, username, description, done) {
+            var today = new Date(),
+                dd = today.getDate(),
+                mm = today.getMonth()+1, //Janvier vaut 0!
+                yyyy = today.getFullYear();
+
+            if(dd<10)
+                dd='0'+dd;
+            if(mm<10)
+                mm='0'+mm;
+
+                today = dd+'/'+mm+'/'+yyyy;
+
             var entry = {
-                dateAdded: new Date().getTime(),
-                zone: zone,
-                direction: direction,
-                kind: kind,
-                rating: 1,
-                description: description,
-                author: username //put the current user here!
+                "_id": new Date().getTime(),
+                "dateAdded": today,
+                "zone": zone,
+                "direction": direction,
+                "kind": kind,
+                "rating": 1,
+                "description": description,
+                "author": username //put the current user here!
             };
             signals.insert(entry, function (error, result) {
                 if (error) return done(error, null);
-                console.log("DB: inserted signals ");
-                return done(error, items);
+                console.log("DB: inserted signal "+ zone);
+                return done(error, null);
             });
         },
         getSignals: function(count, done) {

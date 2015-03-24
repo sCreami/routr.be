@@ -1,21 +1,29 @@
 "use strict";
 
 var Signals = require('../database/Signals'),
-    assert = require('assert'); // MAY BE USEFUL
+    News = require('../database/News'),
+    assert = require('assert');
 
 module.exports = function(app) {
 
-    var db = app.get("db")
-    var listing = new Signals(db);
+    var db = app.get("db"),
+        listing = new Signals(db),
+        news = new News(db);
 
     return {
         home: function(req, res, next) {
-            listing.getSignals(5, function(error, results) {
-                if(error) return next(error);
-                res.render('index', {
-                    partials:{header:'header',footer:'footer'},
-                    username: req.username,
-                    signals: results
+            listing.getSignals(5, function(errorList, resultsList) {
+                if(errorList) return next(errorList);
+
+                news.getNews(3, function(errorNews, resultsNews){
+                    if(errorNews) return(errorNews)
+
+                    res.render('index', {
+                        partials:{header:'header',footer:'footer'},
+                        username: req.username,
+                        signals: resultsList,
+                        news: resultsNews
+                    })
                 })
             })
         },
