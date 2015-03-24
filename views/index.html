@@ -41,21 +41,13 @@
     <div class="panel panel-default">
         <div class="panel-heading panel-title"><b>Dernières nouveautés</b></div>
         <div class="panel-body">
+            {{#news}}
             <article>
-                <h3>Intégration Google maps. <span class="label label-info">New</span></h3>
-                <em class="madeBy">&ndash; par Admin le <time>2015-02-14</time></em>
-                <p class="text-justify">Le site utilise désormais l'API de google maps pour afficher une carte.</p>
+                <h3>{{title}}</h3>
+                <em class="madeBy">&ndash; {{author}} le <time>{{date}}</time></em>
+                <p class="text-justify">{{content}}</p>
             </article>
-            <article>
-                <h3>Nouveau design !</h3>
-                <em class="madeBy">&ndash; par Admin le <time>2015-02-13</time></em>
-                <p class="text-justify">Le site bénéficie désormais d'un css. Ce qui le rend plus classe de 3000% !</p>
-            </article>
-            <article>
-                <h3>Mise en prod</h3>
-                <em class="madeBy">&ndash; par Admin le <time>2015-02-13</time></em>
-                <p class="text-justify">Up de la première version.</p>
-            </article>
+            {{/news}}
         </div>
     </div>
 </section>

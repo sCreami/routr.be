@@ -44,17 +44,16 @@ module.exports = function(app) {
                     }
                     else {
                         var answer = { username: username, errors: {} };
+                            answer.partials = {header:'header',footer:'footer'};
+                            answer.username = "";
+
                         if (error instanceof UnknownUserError) {
                             answer.errors.username = error;
-                            res.render("login", answer + {
-                                partials:{header:'header',footer:'footer'},
-                            });
+                            res.render("login", answer);
                         }
                         else if (error instanceof InvalidPasswordError) {
                             answer.errors.password = error;
-                            res.render("login", answer + {
-                                partials:{header:'header',footer:'footer'},
-                            });
+                            res.render("login", answer);
                         }
                         else {
                             next(error); // passer erreur au gestionnaire suivant
@@ -125,10 +124,10 @@ module.exports = function(app) {
                     if (error) {
                         if (error.code == '11000') {
                             errors.username = "Username already in use.";
-                            res.render("signup", answer + {
-                                partials:{header:'header',footer:'footer'},
-                                isSignup: true
-                            });
+                            answer.partials = {header:'header',footer:'footer'};
+                            answer.isSignup = true;
+                            answer.username = "";
+                            res.render("signup", answer);
                         }
                         else
                             next(error); // faire appel au prochain gestionnaire
@@ -141,6 +140,45 @@ module.exports = function(app) {
                             res.redirect('/');
                         });
                     }
+                });
+            }
+        },
+        account : { //TOFIX
+            validate: function(req, res, next) {
+                var password = req.body.password,
+                    verify = req.body.verify,
+                    email = req.body.email,
+                    passwordRE = /^.{3,20}$/,
+                    emailRE = /^[\S]+@[\S]+\.[\S]+$/,
+                    errors = {};
+
+                if (!passwordRE.test(password))
+                    errors.password = "Invalid password: must have at least 3 and at most 20 caracters";
+                if (password != verify)
+                    errors.verify = "Passwords must match";
+                if (email != "")
+                    if (!emailRE.test(email))
+                        errors.email = "Invalid email address";
+
+                if(Object.keys(errors).length === 0)
+                    next();
+                else {
+                    res.render('account', {
+                        partials:{header:'header',footer:'footer'},
+                        username: req.username,
+                        isAccount: true,
+                        errors: errors
+                    })
+                }
+            },
+            save: function(req, res, next) {
+                var password = req.body.password,
+                    email = req.body.email,
+                    username = req.username;
+
+                users.updateUser(username, password, email, function(error, result) {
+                    if(error) return next(error);
+                    res.redirect('/account');
                 });
             }
         }

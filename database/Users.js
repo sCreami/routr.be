@@ -29,17 +29,16 @@ module.exports = function Users(db) {
                 if (error) return done(error, null);
                 if (!user) return done(new UnknownUserError(username), null);
                 if (user.password !== password)
-                    return done(new InvalidPasswordError(user), null);
+                    return done(new InvalidPasswordError(username), null);
                 return done(null, user); // réussi
             });
         },
         updateUser: function(username, password, email, done) {
-            users.update({'_id' : username },{'$push': {username: username, password: password, email: email}}, function(error, user) {
+            users.update({'_id' : username },{'$push': {'password': password, 'email': email}}, function(error, result) {
                     if (error) return done(error, null);
                     console.log("DB: updated user " + username);
-                    return done(null, user);
+                    return done(null, result);
             });
-            return done(errors, null);
         }
     };
 };

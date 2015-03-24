@@ -22,6 +22,7 @@ module.exports = exports = function(app) {
 
     // Signalement
     app.get('/signal', handlers.content.signal.form);
+    app.post('/signal', handlers.content.signal.validate);
     app.post('/signal', handlers.content.signal.save);
 
     // Enregistrement
@@ -35,8 +36,8 @@ module.exports = exports = function(app) {
 
     // Mon compte
     app.get('/account', handlers.content.account.form);
-    app.post('/account', handlers.content.account.validate);
-    app.post('/account', handlers.content.account.save);
+    app.post('/account', handlers.session.account.validate);
+    app.post('/account', handlers.session.account.save);
 
     // Déconnexion
     app.get('/logout', handlers.session.logout.perform);
