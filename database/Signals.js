@@ -9,7 +9,8 @@ module.exports = function Signals(db) {
             var today = new Date(),
                 dd = today.getDate(),
                 mm = today.getMonth()+1, //Janvier vaut 0!
-                yyyy = today.getFullYear();
+                yyyy = today.getFullYear(),
+                epoch = new Date().getTime();
 
             if(dd<10)
                 dd='0'+dd;
@@ -19,7 +20,7 @@ module.exports = function Signals(db) {
                 today = dd+'/'+mm+'/'+yyyy;
 
             var entry = {
-                "_id": new Date().getTime(),
+                "_id": epoch,
                 "dateAdded": today,
                 "zone": zone,
                 "direction": direction,
@@ -31,11 +32,11 @@ module.exports = function Signals(db) {
             signals.insert(entry, function (error, result) {
                 if (error) return done(error, null);
                 console.log("DB: inserted signal "+ zone);
-                return done(error, null);
+                return done(error, epoch);
             });
         },
         getSignals: function(count, done) {
-            signals.find().sort('dateAdded',-1).limit(count).toArray(function(error, items) {
+            signals.find().sort('_id', -1).limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
                 console.log("Found " + items.length + " signals");
                 return done(error, items);

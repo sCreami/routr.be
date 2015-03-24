@@ -63,8 +63,49 @@ module.exports = function(app) {
                     isSignal: true
                 })
             },
+            validate: function(req, res, next) {
+                var zone = req.body.zone,
+                    direction = req.body.direction,
+                    region = req.body.region,
+                    type = req.body.type,
+                    description = req.body.description,
+                    errors = {};
+
+                    if(zone === "")
+                        errors.zone = "Vous devez spécifier une zone.";
+                    if(direction === "")
+                        errors.direction = "Vous devez spécifier une direction.";
+                    if(description === "")
+                        errors.description = "Une description est nécessaire.";
+
+                    if(Object.keys(errors).length === 0)
+                        next();    
+                    else {
+                        res.render('signal', {
+                            partials:{header:'header',footer:'footer'},
+                            username: req.username,
+                            isSignal: true,
+                            errors: errors
+                        })
+                    }
+            },
             save: function(req, res, next) {
-                // TODO
+                var zone = req.body.zone,
+                    direction = req.body.direction,
+                    region = req.body.region,
+                    type = req.body.type,
+                    description = req.body.description,
+                    user;
+
+                    if(req.username)
+                        user = req.username;
+                    else
+                        user = "Anonyme";
+
+                    listing.addSignal(zone,direction,type,user,description, function(error, result) {
+                        if (error) return next(error);
+                        res.redirect('/list/' + result);
+                    });
             }
         },
         account: {
@@ -75,7 +116,6 @@ module.exports = function(app) {
                     isAccount: true
                 })
             },
-            //FIX UP
             validate: function(req, res, next) {
                 var username = req.body.username,
                     password = req.body.password,
@@ -83,7 +123,8 @@ module.exports = function(app) {
                     email = req.body.email,
                     usernameRE = /^[a-zA-Z0-9_-]{3,20}$/,
                     passwordRE = /^.{3,20}$/,
-                    emailRE = /^[\S]+@[\S]+\.[\S]+$/;
+                    emailRE = /^[\S]+@[\S]+\.[\S]+$/,
+                    errors = {};
 
                 if (!usernameRE.test(username))
                     errors.username = "Invalid username: must be alphanumeric and have between 3 and 20 characters";
@@ -101,7 +142,8 @@ module.exports = function(app) {
                     res.render('account', {
                         partials:{header:'header',footer:'footer'},
                         username: req.username,
-                        isAccount: true
+                        isAccount: true,
+                        errors: errors
                     })
                 }
             },

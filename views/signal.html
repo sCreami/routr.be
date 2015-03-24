@@ -11,19 +11,27 @@
 <section id="signalement" class="font-helv col-md-8">
     <h2><b>Proposer un nouveau signalement</b></h2>
     {{^username}}
-    <div id="alert" class="col-md-12 alert alert-warning">
+    <div role="alert" class="col-md-12 alert alert-warning">
         Vous n'êtes pas connecté, le signalemente sera donc enregistré comme anonyme.
     </div>
     {{/username}}
+    {{#errors}}
+
+    <div class="col-md-12 alert alert-danger" role="alert">
+    {{#errors.zone}}<label class="error">{{errors.zone}}</label><br>{{/errors.zone}}
+    {{#errors.direction}}<label class="error">{{errors.direction}}</label><br>{{/errors.direction}}
+    {{#errors.description}}<label class="error">{{errors.description}}</label>{{/errors.description}}
+    </div>
+    {{/errors}}
     <div class="well well-sm text-justify col-md-12"><p>Vous pouvez utiliser le formulaire çi dessous pour soumettre des dérangements rencontrés personnellement. Veuillez indiquer la zone du dérangement, le type, la direction et ainsi que tout autre information complémentaire pouvent s'avérer utile</p></div>
-    <form role="form">
+    <form role="form" method="post">
         <div class="form-group col-md-6">
             <label for="zone">Zone</label>
-            <input type="text" class="form-control" id="zone" placeholder="exemple : E411 Louvain-la-Neuve">
+            <input type="text" class="form-control" name="zone" placeholder="exemple : E411 Louvain-la-Neuve">
         </div>
         <div class="form-group col-md-6">
             <label for="region">Région</label>
-            <select class="form-control" id="region">
+            <select class="form-control" name="region">
                 <option>Anvers</option>
                 <option>Bruxelles</option>
                 <option>Braban Flamand</option>
@@ -39,11 +47,11 @@
         </div>
         <div class="form-group col-md-6">
             <label for="direction">En direction</label>
-            <input type="text" class="form-control" id="direction" placeholder="exemple : En direction de Bruxelles">
+            <input type="text" class="form-control" name="direction" placeholder="exemple : En direction de Bruxelles">
         </div>
         <div class="form-group col-md-6">
             <label for="type">Type</label>
-            <select class="form-control" id="type">
+            <select class="form-control" name="type">
                 <option>Accident</option>
                 <option>Flash</option>
                 <option>Ralentissement</option>
@@ -52,10 +60,10 @@
         </div>
         <div class="form-group col-md-12" >
             <label for="infobonus">Informations complémentaires</label></br>
-            <textarea class="form-control" rows="5" style="width:100%"></textarea>
+            <textarea class="form-control" name="description" rows="5" style="width:100%"></textarea>
         </div>
         <div class="form-group col-md-12">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Soumettre</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Soumettre</button>
         </div>
     </form>
 </section>

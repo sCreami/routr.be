@@ -22,6 +22,7 @@ module.exports = exports = function(app) {
 
     // Signalement
     app.get('/signal', handlers.content.signal.form);
+    app.post('/signal', handlers.content.signal.validate);
     app.post('/signal', handlers.content.signal.save);
 
     // Enregistrement
