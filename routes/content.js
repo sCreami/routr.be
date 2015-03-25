@@ -43,7 +43,6 @@ module.exports = function(app) {
             },
             more: function(req, res, next) {
                 var id = parseFloat(req.params.id);
-
                 listing.getSignalById(id, function(error, result) {
                     if(error) return next(error);
                     if (!result) res.status(400).send("Not found");
