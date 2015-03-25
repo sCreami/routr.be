@@ -53,7 +53,31 @@ module.exports = function(app) {
                         signal : result, 
                         isList : true
                     })
+                });
+            },
+            rating: function(req, res, next) {
+                res.render('contact', {
+                    partials:{header:'header',footer:'footer'},
+                    username: req.username,
+                    isContact: true
                 })
+                // var id = parseFloat(req.params.id),
+                //     username = req.body.username;
+
+                //     assert.isString(username, "Erreur username");
+                //     assert.isNumber(id, "Erreur id");
+
+                // if(req.body.up) {
+                //     signals.incrementRating(id, username,function(error, result) {
+                //         if (error) return next(error);
+                //         res.status(200).send("OK");
+                //     });
+                // } else {
+                //     signals.decrementRating(id, username,function(error, result) {
+                //         if (error) return next(error);
+                //         res.status(200).send("OK");
+                //     });
+                // }
             }
         },
         signal: {

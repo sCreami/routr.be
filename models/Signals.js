@@ -10,7 +10,10 @@ module.exports = function Signals(db) {
                 dd = today.getDate(),
                 mm = today.getMonth()+1, //Janvier vaut 0!
                 yyyy = today.getFullYear(),
-                epoch = new Date().getTime();
+                epoch = new Date().getTime(),
+                voters = new Array();
+
+                voters.push(username);
 
             if(dd<10)
                 dd='0'+dd;
@@ -56,14 +59,14 @@ module.exports = function Signals(db) {
         //         return done(error, items);
         //     });
         // },
-        incrementRating: function(id, rating, done) {
+        incrementRating: function(id, username, done) {
             signals.update({_id: id}, { $inc: {rating: 1}}, function(error, items) {
                 if (error) return done(error, null);
                 console.log("incremented" + items.length + " signals");
                 return done(error, items);
             });
         },
-        decrementRating: function(id, rating, done) {
+        decrementRating: function(id, username, done) {
             signals.update({_id: id}, { $inc: {rating: -1}}, function(error, items) {
                 if (error) return done(error, null);
                 console.log("decremented" + items.length + " signals");
