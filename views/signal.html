@@ -1,12 +1,5 @@
 {{>header}}
-<div id="map" class="col-md-12">
-    <iframe
-        width=100%
-        height="350"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBLzIcv4cz1O2w_mJiyXG6zjKgj8fr_Vro&center=50.501079,4.47646&zoom=7&maptype=roadmap">
-    </iframe>
-</div>
+<div id="map-canvas" class="col-md-12"></div>
 
 <section id="signalement" class="font-helv col-md-8">
     <h2><b>Proposer un nouveau signalement</b></h2>
@@ -16,7 +9,6 @@
     </div>
     {{/username}}
     {{#errors}}
-
     <div class="col-md-12 alert alert-danger" role="alert">
     {{#errors.zone}}<label class="error">{{errors.zone}}</label><br>{{/errors.zone}}
     {{#errors.direction}}<label class="error">{{errors.direction}}</label><br>{{/errors.direction}}
