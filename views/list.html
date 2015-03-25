@@ -1,5 +1,10 @@
 {{>header}}
+<<<<<<< HEAD
 <div id="map-canvas" class="col-md-12"></div>
+=======
+<div id="map-canvas" class="col-md-12">   
+</div>
+>>>>>>> 9bdb130654253557e80e4016f4176f0b08a85cba
 
 <section id="list" class="font-helv col-md-9">
     <h2><b>Liste des recensements</b></h2>
@@ -15,7 +20,7 @@
                 <th></th>
             </tr>
         </thead>
-        <thbody>
+        <tbody>
             {{#signals}}
             <tr>
                 <td><time>{{dateAdded}}</time></td>
@@ -30,9 +35,12 @@
                     </form>
                 </td>
                 <td><a href="/list/{{_id}}">Plus d'info</a></td>
+                <td>
+                    <button type="button" class="btn" onclick="codeAddress('{{zone}}')">afficher sur la carte</button>
+                </td>
             </tr>
             {{/signals}}
-        </thbody>
+        </tbody>
     </table>
 </section>
 
