@@ -8,13 +8,13 @@ var Signals = require('../models/Signals'),
 module.exports = function(app) {
 
     var db = app.get("db"),
-        listing = new Signals(db),
+        signals = new Signals(db),
         news = new News(db),
         users = new Users(db);
 
     return {
         home: function(req, res, next) {
-            listing.getSignals(5, function(errorList, resultsList) {
+            signals.getSignals(5, function(errorList, resultsList) {
                 if(errorList) return next(errorList);
 
                 news.getNews(3, function(errorNews, resultsNews){
@@ -31,7 +31,7 @@ module.exports = function(app) {
         },
         list: {
             default: function(req, res, next) {
-                listing.getSignals(20, function(error, results) {
+                signals.getSignals(20, function(error, results) {
                     if(error) return next(error);
                     res.render('list', {
                         partials:{header:'header',footer:'footer'},
@@ -39,11 +39,11 @@ module.exports = function(app) {
                         signals: results,
                         isList : true
                     })
-                })
+                });
             },
             more: function(req, res, next) {
                 var id = parseFloat(req.params.id);
-                listing.getSignalById(id, function(error, result) {
+                signals.getSignalById(id, function(error, result) {
                     if(error) return next(error);
                     if (!result) res.status(400).send("Not found");
                     res.render('more', {
@@ -56,28 +56,20 @@ module.exports = function(app) {
                 });
             },
             rating: function(req, res, next) {
-                res.render('contact', {
-                    partials:{header:'header',footer:'footer'},
-                    username: req.username,
-                    isContact: true
-                })
-                // var id = parseFloat(req.params.id),
-                //     username = req.body.username;
+                var id = parseFloat(req.body.id),
+                    username = req.body.username;
 
-                //     assert.isString(username, "Erreur username");
-                //     assert.isNumber(id, "Erreur id");
-
-                // if(req.body.up) {
-                //     signals.incrementRating(id, username,function(error, result) {
-                //         if (error) return next(error);
-                //         res.status(200).send("OK");
-                //     });
-                // } else {
-                //     signals.decrementRating(id, username,function(error, result) {
-                //         if (error) return next(error);
-                //         res.status(200).send("OK");
-                //     });
-                // }
+                if(req.body.up) {
+                    signals.incrementRating(id, username, function(error, result) {
+                        if (error) res.status(300).send();
+                        res.status(200).send();
+                    });
+                } else {
+                    signals.decrementRating(id, username, function(error, result) {
+                        if (error) res.status(300).send();
+                        res.status(200).send("OK");
+                    });
+                }
             }
         },
         signal: {
@@ -127,7 +119,7 @@ module.exports = function(app) {
                     else
                         user = "Anonyme";
 
-                    listing.addSignal(zone,direction,type,user,description, function(error, result) {
+                    signals.addSignal(zone,direction,type,user,description, function(error, result) {
                         if (error) return next(error);
                         res.redirect('/list/' + result);
                     });

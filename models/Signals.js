@@ -62,14 +62,14 @@ module.exports = function Signals(db) {
         incrementRating: function(id, username, done) {
             signals.update({_id: id}, { $inc: {rating: 1}}, function(error, items) {
                 if (error) return done(error, null);
-                console.log("incremented" + items.length + " signals");
+                console.log("incremented signal " + id);
                 return done(error, items);
             });
         },
         decrementRating: function(id, username, done) {
             signals.update({_id: id}, { $inc: {rating: -1}}, function(error, items) {
                 if (error) return done(error, null);
-                console.log("decremented" + items.length + " signals");
+                console.log("decremented signal " + id);
                 return done(error, items);
             });
         }
