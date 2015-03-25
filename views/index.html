@@ -15,10 +15,8 @@
             </tr>
         </thead>
         <tbody>
-        <script src="/js/map.js"></script>
             {{#signals}}
             <tr onclick="codeAddress('{{zone}}', false)">
-            <script>console.log(geocoder);window.onload(codeAddress('{{zone}}', true))</script>
                 <td><time>{{dateAdded}}</time></td>
                 <td>{{zone}}</td>
                 <td>{{direction}}</td>
