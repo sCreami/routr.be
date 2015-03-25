@@ -143,7 +143,7 @@ module.exports = function(app) {
                 });
             }
         },
-        account : { //TOFIX
+        account : {
             validate: function(req, res, next) {
                 var password = req.body.password,
                     verify = req.body.verify,
@@ -166,6 +166,7 @@ module.exports = function(app) {
                     res.render('account', {
                         partials:{header:'header',footer:'footer'},
                         username: req.username,
+                        email: email,
                         isAccount: true,
                         errors: errors
                     })
@@ -176,9 +177,15 @@ module.exports = function(app) {
                     email = req.body.email,
                     username = req.username;
 
-                users.updateUser(username, password, email, function(error, result) {
-                    if(error) return next(error);
-                    res.redirect('/account');
+                users.updateUser(username, password, email, function(errorUpdate, result) {
+                    if(errorUpdate) return next(errorUpdate);
+                    res.render('account', {
+                        partials:{header:'header',footer:'footer'},
+                        username: username,
+                        email: email,
+                        isAccount: true,
+                        alert: "Vos informations ont été mises à jour."
+                    })
                 });
             }
         }

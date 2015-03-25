@@ -2,13 +2,15 @@
 
 var Signals = require('../database/Signals'),
     News = require('../database/News'),
+    Users = require('../database/Users'),
     assert = require('assert');
 
 module.exports = function(app) {
 
     var db = app.get("db"),
         listing = new Signals(db),
-        news = new News(db);
+        news = new News(db),
+        users = new Users(db);
 
     return {
         home: function(req, res, next) {
@@ -110,11 +112,15 @@ module.exports = function(app) {
         },
         account: {
             form: function(req, res, next) {
-                res.render('account', {
-                    partials:{header:'header',footer:'footer'},
-                    username: req.username,
-                    isAccount: true
-                })
+                users.getUserInfo(req.username, function(error, result) {
+                    if(error) return next(error);
+                    res.render('account', {
+                        partials:{header:'header',footer:'footer'},
+                        username: req.username,
+                        email: result.email,
+                        isAccount: true
+                    })
+                });
             }
         },
         contact: function(req, res, next) {

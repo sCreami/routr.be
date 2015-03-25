@@ -20,14 +20,14 @@ module.exports = function Signals(db) {
                 today = dd+'/'+mm+'/'+yyyy;
 
             var entry = {
-                "_id": epoch,
-                "dateAdded": today,
-                "zone": zone,
-                "direction": direction,
-                "kind": kind,
-                "rating": 1,
-                "description": description,
-                "author": username
+                '_id': epoch,
+                'dateAdded': today,
+                'zone': zone,
+                'direction': direction,
+                'kind': kind,
+                'rating': 1,
+                'description': description,
+                'author': username
             };
             signals.insert(entry, function (error, result) {
                 if (error) return done(error, null);

@@ -9,9 +9,9 @@ module.exports = function Comments(db) {
     return {
         addComments: function(title, author, done) {
             var entry = {
-                "date": new Date(),
-                "title": title,
-                "author": author
+                'date': new Date(),
+                'title': title,
+                'author': author
             };
             comments.insert(entry, function (error, result) {
                 if (error) return done(error, null);

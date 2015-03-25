@@ -12,8 +12,8 @@ module.exports = function Users(db) {
         addUser: function(username, password, email, done) {
             // Normalement, on devrait encrypter le mot de passe à ce point-ci.
             var entry = {
-                _id: username,
-                password: password
+                '_id': username,
+                'password': password
             };
             if(email) {
                 entry.email = email;
@@ -34,10 +34,17 @@ module.exports = function Users(db) {
             });
         },
         updateUser: function(username, password, email, done) {
-            users.update({'_id' : username },{'$push': {'password': password, 'email': email}}, function(error, result) {
-                    if (error) return done(error, null);
-                    console.log("DB: updated user " + username);
-                    return done(null, result);
+            users.update({'_id' : username },{'$set': {'password': password, 'email': email}}, function(error, result) {
+                if (error) return done(error, null);
+                console.log("DB: updated user " + username);
+                return done(null, result);
+            });
+        },
+        getUserInfo: function(username, done) {
+            users.findOne({'_id':username}, function(error, user) {
+                if(error) return done(error, null);
+                console.log("DB: fetching user info of " + username);
+                return done(null, user)
             });
         }
     };

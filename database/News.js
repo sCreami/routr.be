@@ -7,9 +7,9 @@ module.exports = function News(db) {
     return {
         addNews: function(title, author, done) {
             var entry = {
-                "date": new Date(),
-                "title": title,
-                "author": author
+                'date': new Date(),
+                'title': title,
+                'author': author
             };
             news.insert(entry, function (error, result) {
                 if (error) return done(error, null);

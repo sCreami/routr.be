@@ -36,6 +36,13 @@ module.exports = function Sessions(db) {
                 if (!session) return done(new UnknownSessionError(sessionId), null);
                 return done(null, session.username);
             });
+        },
+        getEmail: function(sessionId, done) {
+            sessions.findOne({ '_id' : sessionId }, function(error, session) {
+                if (error) return done(error, null);
+                if (!session) return done(new UnknownSessionError(sessionId), null);
+                return done(null, session.email);
+            });
         }
     };
 };
