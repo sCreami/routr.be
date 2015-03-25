@@ -1,9 +1,9 @@
 "use strict";
 
-var Users = require('../database/Users'),
-    Sessions = require('../database/Sessions'),
-    InvalidPasswordError = require('../database/errors/InvalidPassword'),
-    UnknownUserError = require('../database/errors/UnknownUser');
+var Users = require('../models/Users'),
+    Sessions = require('../models/Sessions'),
+    InvalidPasswordError = require('../models/errors/InvalidPassword'),
+    UnknownUserError = require('../models/errors/UnknownUser');
 
 module.exports = function(app) {
 

@@ -1,8 +1,8 @@
 "use strict";
 
-var Signals = require('../database/Signals'),
-    News = require('../database/News'),
-    Users = require('../database/Users'),
+var Signals = require('../models/Signals'),
+    News = require('../models/News'),
+    Users = require('../models/Users'),
     assert = require('assert');
 
 module.exports = function(app) {

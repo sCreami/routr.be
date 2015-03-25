@@ -5,7 +5,7 @@ var UnknownUserError = function(username) {
     // Appeler le constructeur parent.
     Error.call(this);
     // Initialiser le message correspondant à cette erreur.
-    this.message = "Unknown user " + username;
+    this.message = "Utilisateur " + username + " inconnu";
 };
 
 // Établir l'héritage UnknownUserError -> Error.

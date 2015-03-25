@@ -5,7 +5,7 @@ var UnknownSessionError = function(sessionId) {
     // Appeler le constructeur parent.
     Error.call(this);
     // Initialiser le message correspondant à cette erreur.
-    this.message = "Unknown session " + sessionId;
+    this.message = "Session inconnue " + sessionId;
 };
 
 // Établir l'héritage UnknownSessionError -> Error.

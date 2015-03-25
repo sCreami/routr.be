@@ -5,7 +5,7 @@ var InvalidPasswordError = function(username) {
     // Appeler le constructeur parent.
     Error.call(this);
     // Initialiser le message correspondant à cette erreur.
-    this.message = "Invalid password for user " + username;
+    this.message = "Mot de passe incorrect pour " + username;
 };
 
 // Établir l'héritage InvalidPasswordError -> Error.
