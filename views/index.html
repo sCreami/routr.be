@@ -21,11 +21,11 @@
                 <td>{{zone}}</td>
                 <td>{{direction}}</td>
                 <td>{{kind}}</td>
-                <td><span value="{{rating}}" class="rating label label-info">{{rating}}</span></td>
+                <td><span class="rating label label-info">{{rating}}</span></td>
                 <td>
                     <form>
-                        <button type="button" onclick="rate('{{username}}','{{_id}}', true)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" onclick="rate('{{username}}','{{_id}}', null)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                        <button type="button" onclick="rate('{{_id}}',true,this)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" onclick="rate('{{_id}}',null,this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
                     </form>
                 </td>
             </tr>

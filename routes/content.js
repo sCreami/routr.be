@@ -56,26 +56,26 @@ module.exports = function(app) {
             },
             rating: function(req, res, next) {
                 var id = parseFloat(req.body.id),
-                    username = req.body.username;
+                    username = req.username;
 					
 				if(!username) {
 					console.log("Non-identifié tente de voter");
-					res.status(300).send();
+					res.status(403).send();
 				} else {
 					signals.getSignalById(id, function(error, result) {
 						if(error) return next(error);
 						if(result.voters.indexOf(username) > -1)
-							res.status(300).send();
+							res.status(403).send();
 						else {
 		               	 if(req.body.up) {
 		                		signals.incrementRating(id, username, function(error, result) {
-		                       	 if (error) res.status(300).send();
-		                      	  res.status(200).send();
+		                       	 if (error) res.status(403).send();
+		                      	  res.status(204).send();
 								});
 		      			  } else {
 		      				  signals.decrementRating(id, username, function(error, result) {
-		      					  if (error) res.status(300).send();
-		      					  res.status(200).send();
+		      					  if (error) res.status(403).send();
+		      					  res.status(204).send();
 		      				  });
 		     			   }
 						}
