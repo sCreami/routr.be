@@ -34,7 +34,7 @@ module.exports = function(app) {
                 signals.getSignals(20, function(error, results) {
                     if(error) return next(error);
                     res.render('list', {
-                        partials:{header:'header',footer:'footer'},
+                        partials: {header:'header',footer:'footer'},
                         username: req.username,
                         signals: results,
                         isList : true
@@ -45,9 +45,9 @@ module.exports = function(app) {
                 var id = parseFloat(req.params.id);
                 signals.getSignalById(id, function(error, result) {
                     if(error) return next(error);
-                    if (!result) res.status(400).send("Not found");
+                    if(!result) res.status(400).send("Not found");
                     res.render('more', {
-                        partials:{header:'header',footer:'footer'},
+                        partials: {header:'header',footer:'footer'},
                         username: req.username,
                         id : id,
                         signal : result, 
@@ -58,24 +58,36 @@ module.exports = function(app) {
             rating: function(req, res, next) {
                 var id = parseFloat(req.body.id),
                     username = req.body.username;
-
-                if(req.body.up) {
-                    signals.incrementRating(id, username, function(error, result) {
-                        if (error) res.status(300).send();
-                        res.status(200).send();
-                    });
-                } else {
-                    signals.decrementRating(id, username, function(error, result) {
-                        if (error) res.status(300).send();
-                        res.status(200).send("OK");
-                    });
-                }
+					
+				if(!username) {
+					console.log("Non-identifié tente de voter");
+					res.status(300).send();
+				} else {
+					signals.getSignalById(id, function(error, result) {
+						if(error) return next(error);
+						if(result.voters.indexOf(username) > -1)
+							res.status(300).send();
+						else {
+		               	 if(req.body.up) {
+		                		signals.incrementRating(id, username, function(error, result) {
+		                       	 if (error) res.status(300).send();
+		                      	  res.status(200).send();
+								});
+		      			  } else {
+		      				  signals.decrementRating(id, username, function(error, result) {
+		      					  if (error) res.status(300).send();
+		      					  res.status(200).send();
+		      				  });
+		     			   }
+						}
+					});
+				}
             }
         },
         signal: {
             form: function(req, res, next) {
                 res.render('signal', {
-                    partials:{header:'header',footer:'footer'},
+                    partials: {header:'header',footer:'footer'},
                     username: req.username,
                     isSignal: true
                 })
@@ -130,7 +142,7 @@ module.exports = function(app) {
                 users.getUserInfo(req.username, function(error, result) {
                     if(error) return next(error);
                     res.render('account', {
-                        partials:{header:'header',footer:'footer'},
+                        partials: {header:'header',footer:'footer'},
                         username: req.username,
                         email: result.email,
                         isAccount: true
@@ -140,7 +152,7 @@ module.exports = function(app) {
         },
         contact: function(req, res, next) {
             res.render('contact', {
-                partials:{header:'header',footer:'footer'},
+                partials: {header:'header',footer:'footer'},
                 username: req.username,
                 isContact: true
             })

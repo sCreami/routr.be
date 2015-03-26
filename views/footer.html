@@ -9,5 +9,12 @@
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/ajax.js"></script>
         <script src="/js/map.js"></script>
+		<script type="text/javascript">
+			$(document).ready( function(){
+				$("#rating").each(function() {
+					if($(this).val()) $(this).removeClass('label-info').addClass('label-warning');
+				}
+			}
+		</script>
     </body>
 </html>

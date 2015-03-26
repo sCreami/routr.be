@@ -30,7 +30,8 @@ module.exports = function Signals(db) {
                 'kind': kind,
                 'rating': 1,
                 'description': description,
-                'author': username
+                'author': username,
+				'voters': voters
             };
             signals.insert(entry, function (error, result) {
                 if (error) return done(error, null);
