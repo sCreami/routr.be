@@ -22,7 +22,8 @@ sequence
         
     .then(function(next){
         users(db).addUser(client, passwd, email, function(error, result) { 
-            assert(result === null);
+            console.log(result)
+            assert(result !== null);
             next();
         });
     }) 
