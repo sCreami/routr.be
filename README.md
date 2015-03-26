@@ -19,7 +19,7 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 
 - S'assurer de posséder build-essential `sudo apt-get install -y build-essential`
 - Effectuer `sudo npm install` avec les droits pour résoudre les erreures
-- Lancer la webapp grâce à `node app`
+- Lancer la webapp grâce à `npm start`
 
 ## Dépendance
 - body-parser : 1.12.2

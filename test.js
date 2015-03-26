@@ -2,12 +2,11 @@
 
 var assert = require('assert'),
     mongo = require('mongodb').MongoClient,
-    sync = require('sequence'),
+    sequence = require('sequence').Sequence.create(),
     users = require('./models/Users'),
     signals = require('./models/Signals'),
     news = require('./models/News'),
-    comments = require('./models/Comments'),
-    sequence = require('sequence').Sequence.create();
+    comments = require('./models/Comments');
 
 var url = 'mongodb://localhost/routr';
 
@@ -19,21 +18,24 @@ mongo.connect(url, function(err, db) {
         email = "foo@foo.be";
 
 sequence
-        
+    
+    // Test ajout utilisateur  
     .then(function(next){
-        users(db).addUser(client, passwd, email, function(error, result) { 
-            console.log(result)
+        user.addUser(client, passwd, email, function(error, result) { 
             assert(result !== null);
+            console.log("# addUser is correct");
             next();
         });
     }) 
     
+    // Test lecture utilisateur
     .then(function(next){
-        users(db).getUserInfo(client, function(error, result) {
+        user.getUserInfo(client, function(error, result) {
             assert(result !== null);
             assert(result._id == client);
             assert(result.password == passwd);
             assert(result.email == email);
+            console.log("# getUserInfo is correct")
             next();
         });
     })
