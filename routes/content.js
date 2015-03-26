@@ -2,8 +2,7 @@
 
 var Signals = require('../models/Signals'),
     News = require('../models/News'),
-    Users = require('../models/Users'),
-    assert = require('assert');
+	Users = require('../models/Users');
 
 module.exports = function(app) {
 

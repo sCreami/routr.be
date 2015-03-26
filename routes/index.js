@@ -3,7 +3,7 @@
 var express = require('express'),
     path = require('path');
 
-module.exports = exports = function(app) {
+module.exports = function(app) {
 
     var handlers = {
         session: require('./session')(app),

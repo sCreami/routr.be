@@ -1,7 +1,6 @@
-"use strict";
+'use strict';
 
-var assert = require('assert'),
-    InvalidPasswordError = require('./errors/InvalidPassword'),
+var InvalidPasswordError = require('./errors/InvalidPassword'),
     UnknownUserError = require('./errors/UnknownUser');
 
 module.exports = function Users(db) {

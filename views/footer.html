@@ -6,17 +6,9 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-        <script src="/js/bootstrap.min.js"></script>
+		<script>$(document).ready(function(){$(".rating").each(function(){if($(this).attr("value"))$(this).removeClass('label-info').addClass('label-warning')})})</script>
+		<script src="/js/bootstrap.min.js"></script>
         <script src="/js/ajax.js"></script>
         <script src="/js/map.js"></script>
-		<script>
-			$(document).ready(function(){
-				$("#rating").each(function(){
-					console.log($(this).val())
-					console.log("Hello !")
-					if($(this).val()) $(this).removeClass('label-info').addClass('label-warning');
-				})
-			})
-		</script>
-    </body>
+		</body>
 </html>

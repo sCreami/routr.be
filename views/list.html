@@ -22,7 +22,7 @@
                 <td>{{zone}}</td>
                 <td>{{direction}}</td>
                 <td>{{kind}}</td>
-				<td><span id="rating" value="{{rating}}" class="label label-info">{{rating}}</span></td>
+				<td><span value="{{rating}}" class="rating label label-info">{{rating}}</span></td>
                 <td>
                     <form>
                         <button type="button" onclick="rate('{{username}}','{{_id}}', true)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
@@ -33,6 +33,9 @@
             </tr>
             {{/signals}}
         </tbody>
+		<script type="text/javascript">
+		console.log(!{JSON.stringify({signals})};);
+		</script>
     </table>
 </section>
 
