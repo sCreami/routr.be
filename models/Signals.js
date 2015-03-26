@@ -34,21 +34,21 @@ module.exports = function Signals(db) {
 				'voters': voters
             };
             signals.insert(entry, function (error, result) {
-                if (error) return done(error, null);
+                if(error) return done(error, null);
                 console.log("DB: inserted signal "+ zone);
                 return done(error, epoch);
             });
         },
         getSignals: function(count, done) {
             signals.find().sort('_id', -1).limit(count).toArray(function(error, items) {
-                if (error) return done(error, null);
+                if(error) return done(error, null);
                 console.log("Found " + items.length + " signals");
                 return done(error, items);
             });
         },
         getSignalById: function(id, done) {
             signals.findOne({'_id': id}, function(error, item) {
-                if (error) return done(error, null);
+                if(error) return done(error, null);
                 console.log("Showing more of "+ id);
                 return done(error, item);
             });
@@ -61,17 +61,23 @@ module.exports = function Signals(db) {
         //     });
         // },
         incrementRating: function(id, username, done) {
-            signals.update({_id: id}, { $inc: {rating: 1}}, function(error, items) {
-                if (error) return done(error, null);
-                console.log("incremented signal " + id);
-                return done(error, items);
+            signals.update({'_id': id}, { $inc: {'rating': 1}}, function(error, items) {
+                if(error) return done(error, null);
+                signals.update({'_id': id}, {$push: {'voters': username}}, function(error, items) {
+                    if (error) return done(error, null);
+                    console.log("incremented signal " + id);
+                    return done(error, items); 
+                });
             });
         },
         decrementRating: function(id, username, done) {
-            signals.update({_id: id}, { $inc: {rating: -1}}, function(error, items) {
-                if (error) return done(error, null);
-                console.log("decremented signal " + id);
-                return done(error, items);
+            signals.update({'_id': id}, { $inc: {'rating': -1}}, function(error, items) {
+                if(error) return done(error, null);
+                signals.update({'_id': id}, {$push: {'voters': username}}, function(error, items) {
+                    if (error) return done(error, null);
+                    console.log("decremented signal " + id);
+                    return done(error, items); 
+                });
             });
         }
 

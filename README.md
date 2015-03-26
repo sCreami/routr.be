@@ -22,11 +22,11 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 - Lancer la webapp grâce à `node app`
 
 ## Dépendance
-- body-parser : 1.12.0
+- body-parser : 1.12.2
 - consolidate : 0.11.0
 - cookie-parser : 1.3.4
-- express : 4.12.2
+- express : 4.12.3
 - hogan.js : 3.0.2
-- method-override : 2.3.1
-- mongodb : 1.4.34
-- morgan : 1.5.1
+- method-override : 2.3.2
+- mongodb : 2.0.25
+- morgan : 1.5.2

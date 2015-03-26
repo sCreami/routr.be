@@ -9,6 +9,7 @@ var assert = require('assert'),
 
 
 var url = 'mongodb://localhost/routr';
+var value = null;
 
 mongo.connect(url, function(err, db) {
 	
@@ -16,11 +17,18 @@ mongo.connect(url, function(err, db) {
         passwd = "1234",
         email = "foo@foo.be";
 
-    users(db).addUser(client, passwd, email, function(error, result) {
-        assert(client == "Bar");
-    });
+    users(db).addUser(client, passwd, email, function(error, result) { value = result });
     
-    assert(!false);
+    assert(value === null);
+    console.log(value);
+    
+    users(db).getUserInfo(client, function(error, user) { value = user });
+    
+    console.log(value);
+    assert((typeof value === 'null') == false);
+    assert(value.username == client);
+    assert(value.password == passwd);
+    assert(value.email == email);
     
     process.exit(0); // Tests réussis !
 });

@@ -23,14 +23,14 @@
             </tr>
             <tr>
                 <th>Confiance :</th>
-                <td>{{rating}}</td>
+                <td><span value="{{rating}}" class="rating label label-info">{{rating}}</span></td>
             </tr>
             <tr>
                 <th>Vote :</th>
                 <td>
                     <form>
-                        <button type="submit" action="/list/up/{{_id}}" class="btn btn-success btn-xs" name="upvote"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="submit" action="/list/down/{{_id}}" class="btn btn-danger btn-xs" name="downvote"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                        <button type="button" onclick="rate('{{username}}','{{_id}}', true)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" onclick="rate('{{username}}','{{_id}}', null)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
                     </form>
                 </td>
             </tr>
