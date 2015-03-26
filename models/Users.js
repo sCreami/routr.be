@@ -20,7 +20,7 @@ module.exports = function Users(db) {
             users.insert(entry, function (error, result) {
                 if (error) return done(error, null);
                 console.log("DB: inserted user " + username);
-                return done(null, result[0]);
+                return done(null, result);
             });
         },
         validateLogin: function(username, password, done) {

@@ -33,7 +33,7 @@ module.exports = function(app) {
                 console.log("Login: username: " + username + ", pass: " + password);
                 users.validateLogin(username, password, function(error, user) {
                     if (!error) {
-                        sessions.startSession(user['_id'], function(error, sessionId) {
+                        sessions.startSession(username, function(error, sessionId) {
                             if (!error) {
                                 res.cookie('session', sessionId);
                                 res.redirect('/');
@@ -133,7 +133,7 @@ module.exports = function(app) {
                             next(error); // faire appel au prochain gestionnaire
                     }
                     else {
-                        sessions.startSession(user['_id'], function(error, sessionId) {
+                        sessions.startSession(username, function(error, sessionId) {
                             if (error)
                                 next(error);
                             res.cookie('session', sessionId);
@@ -153,18 +153,18 @@ module.exports = function(app) {
                     errors = {};
 
                 if (!passwordRE.test(password))
-                    errors.password = "Invalid password: must have at least 3 and at most 20 caracters";
+                    errors.password = "Mot de passe invalide: Il doit avoir au moins 3 et au max 20 caractères";
                 if (password != verify)
-                    errors.verify = "Passwords must match";
+                    errors.verify = "Les mots de passe doivent coïncider";
                 if (email != "")
                     if (!emailRE.test(email))
-                        errors.email = "Invalid email address";
+                        errors.email = "Adresse email invalide";
 
                 if(Object.keys(errors).length === 0)
                     next();
                 else {
                     res.render('account', {
-                        partials:{header:'header',footer:'footer'},
+                        partials: {header:'header',footer:'footer'},
                         username: req.username,
                         email: email,
                         isAccount: true,
@@ -180,7 +180,7 @@ module.exports = function(app) {
                 users.updateUser(username, password, email, function(errorUpdate, result) {
                     if(errorUpdate) return next(errorUpdate);
                     res.render('account', {
-                        partials:{header:'header',footer:'footer'},
+                        partials: {header:'header',footer:'footer'},
                         username: username,
                         email: email,
                         isAccount: true,

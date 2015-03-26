@@ -2,33 +2,42 @@
 
 var assert = require('assert'),
     mongo = require('mongodb').MongoClient,
+    sync = require('sequence'),
     users = require('./models/Users'),
     signals = require('./models/Signals'),
     news = require('./models/News'),
-    comments = require('./models/Comments');
-
+    comments = require('./models/Comments'),
+    sequence = require('sequence').Sequence.create();
 
 var url = 'mongodb://localhost/routr';
-var value = null;
 
 mongo.connect(url, function(err, db) {
-	
-    var client = "Foo",
+    
+    var user = users(db),
+        client = "Foo",
         passwd = "1234",
         email = "foo@foo.be";
 
-    users(db).addUser(client, passwd, email, function(error, result) { value = result });
+sequence
+        
+    .then(function(next){
+        users(db).addUser(client, passwd, email, function(error, result) { 
+            assert(result === null);
+            next();
+        });
+    }) 
     
-    assert(value === null);
-    console.log(value);
+    .then(function(next){
+        users(db).getUserInfo(client, function(error, result) {
+            assert(result !== null);
+            assert(result._id == client);
+            assert(result.password == passwd);
+            assert(result.email == email);
+            next();
+        });
+    })
     
-    users(db).getUserInfo(client, function(error, user) { value = user });
-    
-    console.log(value);
-    assert((typeof value === 'null') == false);
-    assert(value.username == client);
-    assert(value.password == passwd);
-    assert(value.email == email);
-    
-    process.exit(0); // Tests réussis !
+    .then(function(next){
+        process.exit(0); // Tests réussis !
+    })
 });
