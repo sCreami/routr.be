@@ -1,4 +1,4 @@
-# Routr.be
+# Routr.be ![dependancies](https://david-dm.org/sCreami/foo.svg) [![Build Status](https://magnum.travis-ci.com/sCreami/routr.be.svg?token=yaRgVH99sKCMGz5Yvg8s&branch=node.js)](https://magnum.travis-ci.com/sCreami/routr.be)
 La liste coopérative des dérangements sur les grands axes routiers belges.
 
 <p align="center">
@@ -21,7 +21,7 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 - Effectuer `sudo npm install` avec les droits pour résoudre les erreures
 - Lancer la webapp grâce à `node app`
 
-## Dépendance ![dependancies](https://david-dm.org/sCreami/foo.svg)
+## Dépendance
 - body-parser : 1.12.0
 - consolidate : 0.11.0
 - cookie-parser : 1.3.4
