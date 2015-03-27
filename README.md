@@ -1,4 +1,4 @@
-# Routr.be ![dependancies](https://david-dm.org/sCreami/foo.svg) [![Build Status](https://magnum.travis-ci.com/sCreami/routr.be.svg?token=yaRgVH99sKCMGz5Yvg8s&branch=node.js)](https://magnum.travis-ci.com/sCreami/routr.be)
+# Routr.be [![Dependency Status](https://david-dm.org/sCreami/routr.be.svg)](https://david-dm.org/sCreami/routr.be) [![devDependency Status](https://david-dm.org/sCreami/routr.be/dev-status.svg)](https://david-dm.org/sCreami/routr.be#info=devDependencies) [![Build Status](https://magnum.travis-ci.com/sCreami/routr.be.svg?token=yaRgVH99sKCMGz5Yvg8s&branch=node.js)](https://magnum.travis-ci.com/sCreami/routr.be)
 La liste coopérative des dérangements sur les grands axes routiers belges.
 
 <p align="center">
