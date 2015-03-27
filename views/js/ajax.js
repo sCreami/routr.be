@@ -7,6 +7,6 @@ function rate(id,up,that) {
         else{$s.removeClass('label-info').addClass('label-warning')} 
     })
     .fail(function() {
-        alert("Vous ne pouvez plus voter pour ce signalement !");                  
+        alert("Vous ne pouvez plus voter pour ce signalement. Peut-être avez vous déjà voté ou vous n'êtes simplement pas connecté");                  
     })
 }

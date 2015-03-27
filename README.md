@@ -6,19 +6,19 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 </p>
 
 ## A respecter
-- Les fichiers doivent être encodé en utf-8.
+- Les fichiers doivent être encodés en utf-8.
 - Le code doit être suffisement indenté.
 - Une tabulation représente 4 espaces.
 - Toutes les tabulations doivent être converties en espace.
-- Tout apport majeur tel que l'ajout d'un framework ou redesign doit d'abord être integré sur une branche séparée.
 - Utiliser les classes de bootstrap de mise en forme pour ne pas casser l'aspect _responsive_.
+- Tout apport majeur tel que l'ajout d'un framework ou redesign doit d'abord être integré sur une branche séparée.
 
 ## Installation
 > Testé sous Debian GNU/Linux 7 Wheezy avec <br>
 > node.js : **0.10.37** et npm : **1.4.28**
 
 - S'assurer de posséder build-essential `sudo apt-get install -y build-essential`
-- Effectuer `sudo npm install` avec les droits pour résoudre les erreures
+- Effectuer `sudo npm install --production` avec les droits pour résoudre les erreures
 - Lancer la webapp grâce à `npm start`
 
 ## Dépendance
