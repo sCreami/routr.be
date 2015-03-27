@@ -40,7 +40,7 @@ module.exports = function Signals(db) {
             });
         },
         getSignals: function(count, done) {
-            signals.find().sort('_id', -1).limit(count).toArray(function(error, items) {
+            signals.find({}).sort({'_id': -1}).limit(count).toArray(function(error, items) {
                 if(error) return done(error, null);
                 console.log("Found " + items.length + " signals");
                 return done(error, items);
@@ -80,6 +80,5 @@ module.exports = function Signals(db) {
                 });
             });
         }
-
     };
 };

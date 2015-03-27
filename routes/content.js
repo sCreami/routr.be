@@ -6,19 +6,18 @@ var Signals = require('../models/Signals'),
 
 module.exports = function(app) {
 
-    var db = app.get("db"),
+    var db = app.get('db'),
         signals = new Signals(db),
         news = new News(db),
         users = new Users(db);
 
     return {
         home: function(req, res, next) {
-            signals.getSignals(5, function(errorList, resultsList) {
-                if(errorList) return next(errorList);
+            signals.getSignals(5, function(error, resultsList) {
+                if(error) return next(error);
 
-                news.getNews(3, function(errorNews, resultsNews){
-                    if(errorNews) return(errorNews)
-
+                news.getNews(3, function(error, resultsNews){
+                    if(error) return(error)
                     res.render('index', {
                         partials:{header:'header',footer:'footer'},
                         username: req.username,

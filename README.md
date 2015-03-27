@@ -28,5 +28,5 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 - express : 4.12.3
 - hogan.js : 3.0.2
 - method-override : 2.3.2
-- mongodb : 1.4.35
+- mongodb : 2.0.25
 - morgan : 1.5.2

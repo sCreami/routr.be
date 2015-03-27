@@ -10,7 +10,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     methodOverride = require('method-override');
 
-var url = process.env.MONGOHQ || 'mongodb://localhost:27017/routr';
+var url = process.env.MONGOHQ || 'mongodb://localhost/routr';
 
 mongo.connect(url, function(err, db) {
   if(err) throw err;

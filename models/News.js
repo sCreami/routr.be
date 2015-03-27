@@ -18,7 +18,7 @@ module.exports = function News(db) {
             });
         },
         getNews: function(count, done) {
-            news.find().sort('date',-1).limit(count).toArray(function(error, items) {
+            news.find({}).sort({'date': -1}).limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
                 console.log("Found " + items.length + " news");
                 return done(error, items);

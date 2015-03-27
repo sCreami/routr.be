@@ -35,7 +35,7 @@ module.exports = function Comments(db) {
             });
         },
         getCommentsOfSignal: function(signal, count, done) {
-            comments.find({'signal': signal}).sort('_id',-1).limit(count).toArray(function(error, items) {
+            comments.find({'signal': signal}).sort({'_id':-1}).limit(count).toArray(function(error, items) {
                 if (error) return done(error, null);
                 console.log("Found " + items.length + " comments");
                 return done(error, items);
