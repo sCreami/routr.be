@@ -16,10 +16,12 @@ module.exports = function(app) {
     // Index
     app.get('/', handlers.content.home);
 
-    // liste
+    // Liste
     app.get('/list', handlers.content.list.default);
     app.post('/list/rating', handlers.content.list.rating);
-    app.get('/list/:id', handlers.content.list.more);
+    app.get('/list/:id', handlers.content.list.more.default);
+    app.post('/list/:id', handlers.content.list.more.validateComment);
+    app.post('/list/:id', handlers.content.list.more.saveComment);
 
     // Signalement
     app.get('/signal', handlers.content.signal.form);

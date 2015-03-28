@@ -1,13 +1,11 @@
 "use strict";
 
-//TODO !
-
 module.exports = function Comments(db) {
 
     var comments = db.collection("comments");
 
     return {
-        addCommentToSignal: function(date, author, content, signal, done) {
+        addCommentToSignal: function(author, content, signal, done) {
             var today = new Date(),
                 dd = today.getDate(),
                 mm = today.getMonth()+1, //Janvier vaut 0!

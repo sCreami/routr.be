@@ -7,7 +7,7 @@ var Users = require('../models/Users'),
 
 module.exports = function(app) {
 
-    var db = app.get("db"),
+    var db = app.get('db'),
         users = new Users(db),
         sessions = new Sessions(db);
 
@@ -89,17 +89,17 @@ module.exports = function(app) {
                     answer = { username: username, email: email, errors: {} },
                     errors = answer.errors;
                 if (!usernameRE.test(username)) {
-                    errors.username = "Invalid username: must be alphanumeric and have between 3 and 20 characters";
+                    errors.username = "Nom d'utilisateur invalide: Il doit avoir au moins 3 et au max 20 caractères alphanumérique";
                 }
                 if (!passwordRE.test(password)) {
-                    errors.password = "Invalid password: must have at least 3 and at most 20 caracters";
+                    errors.password = "Mot de passe invalide: Il doit avoir au moins 3 et au max 20 caractères alphanumérique";
                 }
                 if (password != verify) {
-                    errors.verify = "Passwords must match";
+                    errors.verify = "Les mots de passe doivent coïncider";
                 }
                 if (email != "") {
                     if (!emailRE.test(email)) {
-                        errors.email = "Invalid email address";
+                        errors.email = "Addresse email invalide";
                     }
                 }
                 if(Object.keys(errors).length === 0)
@@ -123,7 +123,7 @@ module.exports = function(app) {
                 users.addUser(username, password, email, function(error, user) {
                     if (error) {
                         if (error.code == '11000') {
-                            errors.username = "Username already in use.";
+                            errors.username = "Nom d'utilisateur déjà utilisé";
                             answer.partials = {header:'header',footer:'footer'};
                             answer.isSignup = true;
                             answer.username = "";

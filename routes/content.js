@@ -2,14 +2,15 @@
 
 var Signals = require('../models/Signals'),
     News = require('../models/News'),
-	Users = require('../models/Users');
+    Users = require('../models/Users');
 
 module.exports = function(app) {
 
     var db = app.get('db'),
         signals = new Signals(db),
         news = new News(db),
-        users = new Users(db);
+        users = new Users(db),
+        comments = new Comments(db);
 
     return {
         home: function(req, res, next) {
@@ -19,7 +20,7 @@ module.exports = function(app) {
                 news.getNews(3, function(error, resultsNews){
                     if(error) return(error)
                     res.render('index', {
-                        partials:{header:'header',footer:'footer'},
+                        partials: {header:'header',footer:'footer'},
                         username: req.username,
                         signals: resultsList,
                         news: resultsNews
@@ -39,47 +40,76 @@ module.exports = function(app) {
                     })
                 });
             },
-            more: function(req, res, next) {
-                var id = parseFloat(req.params.id);
-                signals.getSignalById(id, function(error, result) {
-                    if(error) return next(error);
-                    if(!result) res.status(400).send("Not found");
-                    res.render('more', {
-                        partials: {header:'header',footer:'footer'},
-                        username: req.username,
-                        id : id,
-                        signal : result, 
-                        isList : true
-                    })
-                });
+            more: {
+                default: function(req, res, next) {
+                    var id = parseFloat(req.params.id);
+                    signals.getSignalById(id, function(error, resultSignal) {
+                        if(error) return next(error);
+                        if(!result) res.status(400).send("Not found");
+
+                        comments.getCommentsOfSignal(id, 4, function(error, resultComments) {
+                            if(error) return next(error);
+
+                            res.render('more', {
+                                partials: {header:'header',footer:'footer'},
+                                username: req.username,
+                                id : id,
+                                signal : resultSignal,
+                                comments :  resultComments,
+                                isList : true
+                            })
+                        });
+                    });
+                },
+                validateComment: function(req, res, next) {
+                    var author = req.username,
+                        content = req.body.content,
+                        signal = parseFloat(req.param.id);
+
+                        //todo
+
+                    next();
+
+                },
+                saveComment: function(req, res, next) {
+                    var author = req.username,
+                        content = req.body.content,
+                        signal = parseFloat(req.param.id);
+
+                    comments.addCommentToSignal(author, content, signal, function(error, result) {
+                        if(error) return next(error);
+                        res.redirect('/list/' + signal);
+                    });
+                }
             },
             rating: function(req, res, next) {
                 var id = parseFloat(req.body.id),
                     username = req.username;
-					
-				if(!username) {
-					console.log("Non-identifié tente de voter");
-					res.status(403).send();
-				} else {
-					signals.getSignalById(id, function(error, result) {
-						if(error) return next(error);
-						if(result.voters.indexOf(username) > -1)
-							res.status(403).send();
-						else {
-		               	 if(req.body.up) {
-		                		signals.incrementRating(id, username, function(error, result) {
-		                       	 if (error) res.status(403).send();
-		                      	  res.status(204).send();
-								});
-		      			  } else {
-		      				  signals.decrementRating(id, username, function(error, result) {
-		      					  if (error) res.status(403).send();
-		      					  res.status(204).send();
-		      				  });
-		     			   }
-						}
-					});
-				}
+                    
+                if(!username) {
+                    console.log("Non-identifié tente de voter");
+                    res.status(403).send();
+                } else {
+                    signals.getSignalById(id, function(error, result) {
+                        if(error) return next(error);
+
+                        if(result.voters.indexOf(username) > -1) { //username a déjà voté
+                            res.status(403).send();
+                        } else {
+                            if(req.body.up) {
+                                signals.incrementRating(id, username, function(error, result) {
+                                    if (error) res.status(403).send();
+                                    res.status(204).send();
+                                });
+                            } else {
+                                signals.decrementRating(id, username, function(error, result) {
+                                    if (error) res.status(403).send();
+                                    res.status(204).send();
+                                });
+                            }
+                        }
+                    });
+                }
             }
         },
         signal: {
@@ -109,7 +139,7 @@ module.exports = function(app) {
                         next();    
                     else {
                         res.render('signal', {
-                            partials:{header:'header',footer:'footer'},
+                            partials: {header:'header',footer:'footer'},
                             username: req.username,
                             isSignal: true,
                             errors: errors
@@ -122,14 +152,14 @@ module.exports = function(app) {
                     region = req.body.region,
                     type = req.body.type,
                     description = req.body.description,
-                    user;
+                    author;
 
                     if(req.username)
-                        user = req.username;
+                        author = req.username;
                     else
-                        user = "Anonyme";
+                        author = "Anonyme";
 
-                    signals.addSignal(zone,direction,type,user,description, function(error, result) {
+                    signals.addSignal(zone,direction,type,author,description, function(error, result) {
                         if (error) return next(error);
                         res.redirect('/list/' + result);
                     });
