@@ -8,6 +8,7 @@ module.exports = function(app) {
     var handlers = {
         session: require('./session')(app),
         content: require('./content')(app),
+        ajax: require('./ajax')(app),
         error: require('./error')
     };
 
@@ -15,6 +16,9 @@ module.exports = function(app) {
 
     // Index
     app.get('/', handlers.content.home);
+
+    // Ajax
+    app.get('/ajax', handlers.ajax.json);
 
     // Liste
     app.get('/list', handlers.content.list.default);

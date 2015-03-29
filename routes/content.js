@@ -31,15 +31,11 @@ module.exports = function(app) {
         },
         list: {
             default: function(req, res, next) {
-                signals.getSignals(20, function(error, results) {
-                    if(error) return next(error);
-                    res.render('list', {
-                        partials: {header:'header',footer:'footer'},
-                        username: req.username,
-                        signals: results,
-                        isList : true
-                    })
-                });
+                res.render('list', {
+                    partials: {header:'header',footer:'footer'},
+                    username: req.username,
+                    isList : true
+                })
             },
             more: {
                 default: function(req, res, next) {

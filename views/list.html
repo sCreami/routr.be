@@ -1,7 +1,7 @@
 {{>header}}
 <div id="map-canvas" class="col-md-12"></div>
 
-<section id="list" class="font-helv col-md-9">
+<div id="list" class="font-helv col-md-9">
     <h2><b>Liste des recensements</b></h2>
     <table class="table table-hover">
         <thead>
@@ -15,28 +15,26 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
-            {{#signals}}
-            <tr onclick="codeAddress('{{zone}}', false);">
-                <td><time>{{dateAdded}}</time></td>
-                <td>{{zone}}</td>
-                <td>{{direction}}</td>
-                <td>{{kind}}</td>
-                <td><span class="rating label label-info">{{rating}}</span></td>
+        <tbody ng-controller="SignalsCtrl">
+            <tr ng-repeat="signal in signals" ng-click="codeAddress('{[{signal.zone}]}', false);">
+                <td><time>{[{signal.dateAdded}]}</time></td>
+                <td>{[{signal.zone}]}</td>
+                <td>{[{signal.direction}]}</td>
+                <td>{[{signal.kind}]}</td>
+                <td><span class="rating label label-info">{[{signal.rating}]}</span></td>
                 <td>
                     <form>
-                        <button type="button" onclick="rate('{{_id}}', true, this)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" onclick="rate('{{_id}}', null, this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                        <button type="button" ng-click="rate('{[{signal._id}]}', true, this)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" ng-click="rate('{[{signal._id}]}', null, this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
                     </form>
                 </td>
-                <td><a href="/list/{{_id}}">Plus d'info</a></td>
+                <td><a href="/list/{[{signal._id}]}">Plus d'info</a></td>
             </tr>
-            {{/signals}}
         </tbody>
     </table>
-</section>
+</div>
 
-<section id="filtre" class="font-helv col-md-3">
+<div id="filtre" class="font-helv col-md-3">
     <h2><b>Rechercher</b></h2>
     <form>
         <fieldset>
@@ -65,5 +63,6 @@
             </select>
         </fieldset>
     </form>
-</section>
+</div>
+
 {{>footer}}

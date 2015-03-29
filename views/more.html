@@ -45,12 +45,10 @@
 
     <div class="col-md-12">
     {{#comments}}
-    <article>
-        <blockquote style="padding: 0 1.71em">
-            <span class="text-justify">{{content}}</span>
-            <footer>{{author}} le <time>{{date}}</time></footer>
-        </blockquote>
-    </article>
+    <blockquote style="padding: 0 1.71em">
+        <span class="text-justify">{{content}}</span>
+        <footer>{{author}} le <time>{{date}}</time></footer>
+    </blockquote>
     {{/comments}}
     {{^comments}}
         <pre>Il n'y a pas encore de commentaire.</pre>
@@ -69,7 +67,7 @@
     </form>
     {{/username}}
     {{^username}}
-    <div class="alert alert-info" role="alert">Vous devez être connecté pour laisser un commentaire.</div>
+    <div class="col-md-12 alert alert-info" role="alert">Vous devez être connecté pour laisser un commentaire.</div>
     {{/username}}
 </div>
 {{>footer}}
