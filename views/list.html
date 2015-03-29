@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody ng-controller="SignalsCtrl">
-            <tr ng-repeat="signal in signals" ng-click="codeAddress('{[{signal.zone}]}', false);">
+            <tr ng-repeat="signal in signals | filter:query | filter:kind | filter:region" ng-click="codeAddress(signal.zone, false)">
                 <td><time>{[{signal.dateAdded}]}</time></td>
                 <td>{[{signal.zone}]}</td>
                 <td>{[{signal.direction}]}</td>
@@ -24,8 +24,8 @@
                 <td><span class="rating label label-info">{[{signal.rating}]}</span></td>
                 <td>
                     <form>
-                        <button type="button" ng-click="rate('{[{signal._id}]}', true, this)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" ng-click="rate('{[{signal._id}]}', null, this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                        <button type="button" ng-click="rate(signal._id, true, this)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" ng-click="rate(signal._id, null, this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
                     </form>
                 </td>
                 <td><a href="/list/{[{signal._id}]}">Plus d'info</a></td>
@@ -38,9 +38,9 @@
     <h2><b>Rechercher</b></h2>
     <form>
         <fieldset>
-            <input type="text" class="form-control" placeholder="Filtrer"><br>
+            <input type="text" ng-model="query" class="form-control" placeholder="Filtrer"><br>
             <label>Type :</label>
-            <select class="form-control">
+            <select ng-model="kind" class="form-control">
                 <option value="" disable selected></option>
                 <option>Accident</option>
                 <option>Flash</option>
@@ -48,7 +48,7 @@
                 <option>Travaux</option>
             </select><br>
             <label>Région :</label>
-            <select multiple class="form-control" size="11">
+            <select ng-model="region" ng-multiple class="form-control" size="12">
                 <option>Anvers</option>
                 <option>Bruxelles</option>
                 <option>Braban Flamand</option>

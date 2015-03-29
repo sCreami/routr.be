@@ -16,5 +16,13 @@ var app = angular.module('routr', []);
             });
         };
 
-        window.onload = $scope.loadSignals;
+        $scope.codeAddress = function(address, markerOnly) {
+        	codeAddress(address, markerOnly);
+        };
+
+        $scope.rate = function(id,up,that) {
+        	rate(id, up, that);
+    	};
+
+        setTimeout($scope.loadSignals, 1);
     });

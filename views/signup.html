@@ -4,7 +4,7 @@
         <div class="panel-heading"><h3 class="panel-title">Enregistrement</h3></div>
         <br>
         <div class="panel-body">
-            <form method="post">
+            <form action role="form" method="post">
                 {{#errors}}
                 <div class="alert alert-danger" role="alert">
                 {{#errors.username}}<label class="error">{{errors.username}}</label>{{/errors.username}}

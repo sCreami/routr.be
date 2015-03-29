@@ -1,7 +1,7 @@
 {{>header}}
 <div id="map-canvas" class="col-md-12"></div>
 
-<section id="signalement" class="font-helv col-md-8">
+<div id="signalement" class="font-helv col-md-8">
     <h2><b>Proposer un nouveau signalement</b></h2>
     {{^username}}
     <div role="alert" class="col-md-12 alert alert-warning">
@@ -16,7 +16,7 @@
     </div>
     {{/errors}}
     <div class="well well-sm text-justify col-md-12"><p>Vous pouvez utiliser le formulaire çi dessous pour soumettre des dérangements rencontrés personnellement. Veuillez indiquer la zone du dérangement, le type, la direction et ainsi que tout autre information complémentaire pouvant s'avérer utile.</p></div>
-    <form role="form" method="post">
+    <form action role="form" method="post">
         <div class="form-group col-md-6">
             <label for="zone">Zone</label>
             <input type="text" class="form-control" name="zone" placeholder="exemple : E411 Louvain-la-Neuve">
@@ -58,7 +58,7 @@
         <button type="submit" class="btn btn-primary btn-lg btn-block">Soumettre</button>
         </div>
     </form>
-</section>
+</div>
 
 <div id="bonnePratique" class="col-md-4">
     <div class="panel panel-info">
