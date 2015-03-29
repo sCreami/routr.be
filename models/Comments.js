@@ -29,14 +29,14 @@ module.exports = function Comments(db) {
             comments.insert(entry, function (error, result) {
                 if (error) return done(error, null);
                 console.log("DB: inserted comments from " + author + " of " + signal);
-                return done(error, items);
+                return done(error, result);
             });
         },
         getCommentsOfSignal: function(signal, count, done) {
-            comments.find({'signal': signal}).sort({'_id':-1}).limit(count).toArray(function(error, items) {
+            comments.find({'signal': signal}).sort({'_id':-1}).limit(count).toArray(function(error, result) {
                 if (error) return done(error, null);
-                console.log("Found " + items.length + " comments");
-                return done(error, items);
+                console.log("Found " + result.length + " comments");
+                return done(error, result);
             });
         }
     };

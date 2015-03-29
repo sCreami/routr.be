@@ -2,7 +2,8 @@
 
 var Signals = require('../models/Signals'),
     News = require('../models/News'),
-    Users = require('../models/Users');
+    Users = require('../models/Users'),
+    Comments = require('../models/Comments');
 
 module.exports = function(app) {
 
@@ -43,9 +44,10 @@ module.exports = function(app) {
             more: {
                 default: function(req, res, next) {
                     var id = parseFloat(req.params.id);
+
                     signals.getSignalById(id, function(error, resultSignal) {
                         if(error) return next(error);
-                        if(!result) res.status(400).send("Not found");
+                        if(!resultSignal) res.status(400).send("Not found");
 
                         comments.getCommentsOfSignal(id, 4, function(error, resultComments) {
                             if(error) return next(error);
@@ -53,7 +55,6 @@ module.exports = function(app) {
                             res.render('more', {
                                 partials: {header:'header',footer:'footer'},
                                 username: req.username,
-                                id : id,
                                 signal : resultSignal,
                                 comments :  resultComments,
                                 isList : true
@@ -64,21 +65,43 @@ module.exports = function(app) {
                 validateComment: function(req, res, next) {
                     var author = req.username,
                         content = req.body.content,
-                        signal = parseFloat(req.param.id);
+                        id = parseFloat(req.params.id),
+                        errors = {};
 
-                        //todo
+                    if(author == "")
+                        errors.author = "Erreur d'auteur.";
+                    if(content == "")
+                        errors.author = "Vous devez écrire un contenu.";
 
-                    next();
+                    if(Object.keys(errors).length === 0) {
+                        next();    
+                    } else {
+                        signals.getSignalById(id, function(error, resultSignal) {
+                            if(error) return next(error);
+                            if(!resultSignal) res.status(400).send("Not found");
 
+                            comments.getCommentsOfSignal(id, 4, function(error, resultComments) {
+                                if(error) return next(error);
+
+                                res.render('more', {
+                                    partials: {header:'header',footer:'footer'},
+                                    username: req.username,
+                                    signal : resultSignal,
+                                    comments :  resultComments,
+                                    isList : true
+                                })
+                            });
+                        });
+                    }
                 },
                 saveComment: function(req, res, next) {
                     var author = req.username,
                         content = req.body.content,
-                        signal = parseFloat(req.param.id);
+                        id = parseFloat(req.params.id);
 
-                    comments.addCommentToSignal(author, content, signal, function(error, result) {
+                    comments.addCommentToSignal(author, content, id, function(error, result) {
                         if(error) return next(error);
-                        res.redirect('/list/' + signal);
+                        res.redirect('/list/' + id);
                     });
                 }
             },

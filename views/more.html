@@ -1,44 +1,75 @@
 {{>header}}
 <div id="map-canvas" class="col-md-12"></div>
 
-<div class="col-md-4 col-md-offset-1">
+<div class="col-md-12">
+<h2><b>Plus d'informations sur : </b><small>{{signal.zone}}</small></h2>
+</div>
+
+<div class="col-md-8">
     <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Ajouté le</th>
+                <th>Zone</th>
+                <th>Vers</th>
+                <th>Type</th>
+                <th>Confiance</th>
+                <th>Vote</th>
+                <th></th>
+            </tr>
+        </thead>
         <tbody>
-            {{#signal}}
-            <tr>
-                <th>Ajouté le :</th>
-                <td><time>{{dateAdded}}</time></td>
-            </tr>
-            <tr>
-                <th>Zone :</th>
-                <td>{{zone}}</td>
-            </tr>
-            <tr>
-                <th>Direction :</th>
-                <td>{{direction}}</td>
-            </tr>
-            <tr>
-                <th>Type :</th>
-                <td>{{kind}}</td>
-            </tr>
-            <tr>
-                <th>Confiance :</th>
-                <td><span class="rating label label-info">{{rating}}</span></td>
-            </tr>
-            <tr>
-                <th>Vote :</th>
+            <tr onclick="codeAddress('{{signal.zone}}', false);">
+                <td><time>{{signal.dateAdded}}</time></td>
+                <td>{{signal.zone}}</td>
+                <td>{{signal.direction}}</td>
+                <td>{{signal.kind}}</td>
+                <td><span class="rating label label-info">{{signal.rating}}</span></td>
                 <td>
                     <form>
-                        <button type="button" onclick="rate('{{_id}}',true,this)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" onclick="rate('{{_id}}',null,this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                        <button type="button" onclick="rate('{{signal._id}}', true, this)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" onclick="rate('{{signal._id}}', null, this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
                     </form>
                 </td>
             </tr>
-            {{/signal}}
         </tbody>
     </table>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Complément offert par l'auteur : {{signal.author}}</div>
+        <div class="panel-body">{{signal.description}}</div>
+    </div>
 </div>
-<div class="col-md-6">
-    <h2>Insert fucking commentaire here !</h2>
+
+<div class="col-md-4">
+
+    <div class="col-md-12">
+    {{#comments}}
+    <article>
+        <blockquote style="padding: 0 1.71em">
+            <span class="text-justify">{{content}}</span>
+            <footer>{{author}} le <time>{{date}}</time></footer>
+        </blockquote>
+    </article>
+    {{/comments}}
+    {{^comments}}
+        <pre>Il n'y a pas encore de commentaire.</pre>
+    {{/comments}}
+    </div>
+
+    <!-- Formulaire -->
+    {{#username}}
+    <form role="form" method="post">
+        <div class="form-group col-md-12" >
+            <textarea class="form-control" name="content" rows="2" style="resize:none;width:100%" placeholder="Commentaire"></textarea>
+        </div>
+        <div class="form-group col-md-12">
+            <button type="submit" class="btn btn-primary btn-sm btn-block">Ajouter</button>
+        </div>
+    </form>
+    {{/username}}
+    {{^username}}
+    <div class="alert alert-info" role="alert">Vous devez être connecté pour laisser un commentaire.</div>
+    {{/username}}
 </div>
 {{>footer}}
