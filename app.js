@@ -1,12 +1,12 @@
 'use strict';
 
-var express = require('express'),
-    engines = require('consolidate'),
-    path = require('path'),
-    routes = require('./routes'),
-    mongo = require('mongodb').MongoClient,
+var path = require('path'),
     logger = require('morgan'),
+    express = require('express'),
+    routes = require('./routes'),
+    engines = require('consolidate'),
     bodyParser = require('body-parser'),
+    mongo = require('mongodb').MongoClient,
     cookieParser = require('cookie-parser'),
     methodOverride = require('method-override');
 

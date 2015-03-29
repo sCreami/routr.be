@@ -24,11 +24,11 @@
                 <td>{{signal.zone}}</td>
                 <td>{{signal.direction}}</td>
                 <td>{{signal.kind}}</td>
-                <td><span class="rating label label-info">{{signal.rating}}</span></td>
+                <td><span data-id="{{signal._id}}" class="rating label label-info">{{signal.rating}}</span></td>
                 <td>
                     <form>
-                        <button type="button" onclick="rate('{{signal._id}}', true, this)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
-                        <button type="button" onclick="rate('{{signal._id}}', null, this)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+                        <button type="button" onclick="rate('{{signal._id}}', true)" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></button>
+                        <button type="button" onclick="rate('{{signal._id}}', null)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
                     </form>
                 </td>
             </tr>

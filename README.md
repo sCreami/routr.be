@@ -5,7 +5,7 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
   <img src="http://i.imgur.com/E1YMjBT.png"/>
 </p>
 
-## A respecter
+## Avant de pusher
 - Les fichiers doivent être encodés en utf-8.
 - Le code doit être suffisement indenté.
 - Une tabulation représente 4 espaces.
@@ -21,12 +21,8 @@ La liste coopérative des dérangements sur les grands axes routiers belges.
 - Effectuer `sudo npm install --production` avec les droits pour résoudre les erreures
 - Lancer la webapp grâce à `npm start`
 
-## Dépendance
-- body-parser : 1.12.2
-- consolidate : 0.11.0
-- cookie-parser : 1.3.4
-- express : 4.12.3
-- hogan.js : 3.0.2
-- method-override : 2.3.2
-- mongodb : 2.0.25
-- morgan : 1.5.2
+## Dépendances
+- node.js 0.10.37
+- express 4.12.3
+- mongodb 3.0
+- angularJS 1.3.15

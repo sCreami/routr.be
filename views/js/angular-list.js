@@ -4,7 +4,7 @@ var app = angular.module('routr', []);
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     });
     
-    app.controller('SignalsCtrl', function($scope, $http) {
+    app.controller('SignalsCtrl', function($scope, $http, $timeout) {
         $scope.signals = [];
 
         $scope.loadSignals = function() {
@@ -13,6 +13,12 @@ var app = angular.module('routr', []);
                 url: '/ajax'
             }).success(function(data, status) {
                 $scope.signals = data;
+
+                $timeout(function(){
+                    $('.rating').each(function(){
+                        if(parseInt($(this).text()) < 1) $(this).removeClass('label-info').addClass('label-warning')
+                    })
+                })
             });
         };
 
@@ -20,9 +26,9 @@ var app = angular.module('routr', []);
         	codeAddress(address, markerOnly);
         };
 
-        $scope.rate = function(id,up,that) {
+        $scope.rate = function(id, up, that) {
         	rate(id, up, that);
     	};
 
-        setTimeout($scope.loadSignals, 1);
+        window.onpageshow = $scope.loadSignals;
     });

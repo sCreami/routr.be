@@ -1,5 +1,5 @@
-function rate(id,up,that) {
-    var $s = $(that).parents('tr').find('td:nth(4)>'),
+function rate(id, up) {
+    var $s = $('span[data-id="' + id + '"]').parents('tr').find('td:nth(4)>'),
         p = parseInt( $s.text() );
 
     $.post("/list/rating", {'id': id, 'up': up})
