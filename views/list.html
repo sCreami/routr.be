@@ -18,7 +18,7 @@
         <tbody ng-controller="SignalsCtrl">
             <tr ng-repeat="signal in signals | filter:query | filter:kind | filter:region" ng-click="codeAddress(signal.zone, false)">
                 <td><time>{[{signal.dateAdded}]}</time></td>
-                <td>{[{signal.zone}]}</td>
+                <td class="zoning">{[{signal.zone}]}</td>
                 <td>{[{signal.direction}]}</td>
                 <td>{[{signal.kind}]}</td>
                 <td><span data-id="{[{signal._id}]}" class="rating label label-info">{[{signal.rating}]}</span></td>
@@ -28,7 +28,7 @@
                         <button type="button" ng-click="rate(signal._id, null)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
                     </form>
                 </td>
-                <td><a href="/list/{[{signal._id}]}">Plus d'info</a></td>
+                <td><a href="/list/{[{signal._id}]}">Plus d'infos</a></td>
             </tr>
         </tbody>
     </table>
@@ -39,15 +39,17 @@
     <form>
         <fieldset>
             <input type="text" ng-model="query" class="form-control" placeholder="Filtrer"><br>
+            <label>Type :</label>
             <select ng-model="kind" class="form-control">
-                <option value="" selected>Type</option>
+                <option value="" selected></option>
                 <option>Accident</option>
                 <option>Flash</option>
                 <option>Ralentissement</option>
                 <option>Travaux</option>
             </select><br>
             <label>Région :</label>
-            <select ng-model="region" class="form-control" size="11">
+            <select ng-model="region" class="form-control">
+                <option value="" selected></option>
                 <option>Anvers</option>
                 <option>Bruxelles</option>
                 <option>Braban Flamand</option>
@@ -66,5 +68,4 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 <script src="/js/angular-list.js"></script>
-
 {{>footer}}

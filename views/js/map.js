@@ -10,6 +10,7 @@ function initialize() {
     };
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    showMarker();
 }
 
 function loadScript() {
@@ -21,13 +22,24 @@ function loadScript() {
 
 function codeAddress(address, markerOnly) {
     geocoder.geocode({'address': address}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK)
-        {
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
+        if (status == google.maps.GeocoderStatus.OK) {
+            if(!markerOnly) {
+                map.setCenter(results[0].geometry.location);
+            } else {
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            }
+        } else {
+            console.log("erreur geocode");
         }
+    });
+}
+
+function showMarker() {
+    $('.zoning').each(function(){
+        codeAddress($(this).text(), true);
     });
 }
 

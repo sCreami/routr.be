@@ -1,5 +1,7 @@
 "use strict";
 
+var UnknownSignalError = require('./errors/UnknownSignal');
+
 module.exports = function Signals(db) {
 
     var signals = db.collection("signals");
@@ -49,6 +51,7 @@ module.exports = function Signals(db) {
         getSignalById: function(id, done) {
             signals.findOne({'_id': id}, function(error, item) {
                 if(error) return done(error, null);
+                if(!item) return done(new UnknownSignalError(id), null);
                 console.log("Showing more of "+ id);
                 return done(error, item);
             });
